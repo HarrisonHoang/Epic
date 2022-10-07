@@ -4,6 +4,7 @@
 user = "" 
 
 
+
 #AFTER LOGIN = HOME PAGE
 #created a function in order to call it again when asked to return to the main screen
 def additionalOptions():
