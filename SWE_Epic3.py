@@ -1,7 +1,7 @@
-#Epic 2
+#Epic 3
 
 #Global Variables
-user = ""
+user = "" 
 
 
 #AFTER LOGIN = HOME PAGE
@@ -213,6 +213,33 @@ UserStory = print("Welcome to InCollege! InCollege is a website to help college 
 VideoOption = str(input("Want to see more on how InCollege has brightened the future of college students? Watch this video! (Y/N)"))
 if VideoOption == "Y" or VideoOption == "y":
     WatchVideo()
+UsefulLinks = str(input("Useful Links:\n" "General\n" "Browse InCollege\n" "Business Solutions\n" "Directories \n"))
+ImportantLinks = str(input("InCollege Important Links: \n" "Copyright Notice\n" "Brand Policy\n" "Guest Controls\n" "Languages\n"))
+if UsefulLinks == "General":
+    General()
+if UsefulLinks == "Browse InCollege"
+    print("\nUnder construction\n")
+if UsefulLinks == "Business Solutions"
+    print("\nUnder construction\n")
+if UsefulLinks == "Directories"
+    print("\nUnder construction\n")
+
+def General():
+    general = str(input("Sign up\n" "Help Center\n" "About\n" "Press\n" "Blog\n" "Careers\n" "Developers\n"))
+    if General == "Sign up":
+        #take user to home page
+    if General == "Help Center"
+        print("\nWe're here to help.\n")
+    if General == "About"
+        print("\nInCollege: Welcome to InCollege, the world's largest college student network with many users in many countries and territories worldwide\n")
+    if General == "Press"
+        print("\nInCollege Pressroom: Stay on top of the latest news, updates, and reports\n")
+    if General == "Blog"
+        print("\nUnder construction\n")
+    if General == "Careers"
+        print("\nUnder construction\n")
+    if General == "Developers"
+        print("\nUnder construction\n")
 
 #call prelogin screen
 loginOptions()
