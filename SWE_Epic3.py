@@ -207,6 +207,60 @@ def LogIn():
 def WatchVideo():
     print("Video is now playing...")
 
+def General():
+    generalInput = str(input("Sign up\n" "Help Center\n" "About\n" "Press\n" "Blog\n" "Careers\n" "Developers\n"))
+    if generalInput == "Sign up":
+        CreateAcc()
+    if generalInput == "Help Center":
+        print("\nWe're here to help.\n")
+    if generalInput == "About":
+        print("\nInCollege: Welcome to InCollege, the world's largest college student network with many users in many countries and territories worldwide\n")
+    if generalInput == "Press":
+        print("\nInCollege Pressroom: Stay on top of the latest news, updates, and reports\n")
+    if generalInput == "Blog":
+        print("\nUnder construction\n")
+    if generalInput == "Careers":
+        print("\nUnder construction\n")
+    if generalInput == "Developers":
+        print("\nUnder construction\n")
+
+def UsefulLinks():
+    usefulLinksInput = str(input("Please enter where you would like to go:\n" "General\n" "Browse InCollege\n" "Business Solutions\n" "Directories \n" "Go Back\n"))
+    if usefulLinksInput == "General":
+        General()
+    if usefulLinksInput == "Browse InCollege":
+        print("\nUnder construction\n")
+    if usefulLinksInput == "Business Solutions":
+        print("\nUnder construction\n")
+    if usefulLinksInput == "Directories":
+        print("\nUnder construction\n")
+    if usefulLinksInput == "Go Back":
+        print("Returning\n")
+        return                      #Return to previous location
+
+def ImportantLinks():
+    while True: 
+        importantLinksInput = str(input("Please enter where you would like to go:\n" "A Copyright Notice\n" "About Accessibility\n" "User Agreement\n" "Privacy Policy\n" "Cookie Policy\n" "Copyright Policy\n" "Brand Policy\n" "Guest Controls\n" "Languages\n" "Go back\n"))
+        if importantLinksInput == "A Copyrigth Notice":
+            print()
+        elif importantLinksInput == "About":
+            print()
+        elif importantLinksInput == "Accessibility":
+            print()
+        elif importantLinksInput == "User Agreement":
+            print()
+        elif importantLinksInput == "Privacy Policy":
+            print()
+        elif importantLinksInput == "Cookie Policy":
+            print()
+        elif importantLinksInput == "Copyright Policy":
+            print()
+        elif importantLinksInput == "Brand Policy":
+            print()
+        elif importantLinksInput == "Go Back":
+            print("Return \n")
+            break
+        
 
 #THIS MUST BE MAIN FUNC
 #Using existing InCollege account or Creating a new account
@@ -214,36 +268,25 @@ UserStory = print("Welcome to InCollege! InCollege is a website to help college 
 VideoOption = str(input("Want to see more on how InCollege has brightened the future of college students? Watch this video! (Y/N)"))
 if VideoOption == "Y" or VideoOption == "y":
     WatchVideo()
-UsefulLinks = str(input("Useful Links:\n" "General\n" "Browse InCollege\n" "Business Solutions\n" "Directories \n"))
-ImportantLinks = str(input("InCollege Important Links: \n" "Copyright Notice\n" "Brand Policy\n" "Guest Controls\n" "Languages\n"))
-if UsefulLinks == "General":
-    General()
-if UsefulLinks == "Browse InCollege"
-    print("\nUnder construction\n")
-if UsefulLinks == "Business Solutions"
-    print("\nUnder construction\n")
-if UsefulLinks == "Directories"
-    print("\nUnder construction\n")
 
-def General():
-    general = str(input("Sign up\n" "Help Center\n" "About\n" "Press\n" "Blog\n" "Careers\n" "Developers\n"))
-    if General == "Sign up":
-        #take user to home page
-    if General == "Help Center"
-        print("\nWe're here to help.\n")
-    if General == "About"
-        print("\nInCollege: Welcome to InCollege, the world's largest college student network with many users in many countries and territories worldwide\n")
-    if General == "Press"
-        print("\nInCollege Pressroom: Stay on top of the latest news, updates, and reports\n")
-    if General == "Blog"
-        print("\nUnder construction\n")
-    if General == "Careers"
-        print("\nUnder construction\n")
-    if General == "Developers"
-        print("\nUnder construction\n")
+while(True):
+    links = str(input("Would you like to view Useful Links or InCollege Important Links:\n"))
+    if links == "Useful Links" or "useful links":
+        UsefulLinks()
+    elif links == "InCollege Important Links" or "incollege important links":
+        ImportantLinks()
+    else:
+        print("Invald input, please try again")
+        continue
+
+
+
+
+
+
 
 #call prelogin screen
-loginOptions()
+#loginOptions()
 
 
             
