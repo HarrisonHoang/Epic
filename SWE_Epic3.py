@@ -1,7 +1,9 @@
 #Epic 3
 
 #Global Variables
+
 user = "" 
+
 
 
 
@@ -11,7 +13,8 @@ def additionalOptions():
     global user
     addiOption = str(input("\nPress J to search for a job:\n"
                         "Press F to find someone you know:\n"
-                        "Press S to learn a new skill:\n"))
+                        "Press S to learn a new skill:\n"
+                        "Or, enter InCollege Important Links to view important InCollege links\n"))
     if addiOption == "J" or addiOption == "j":
         jobSearch(user)
 
@@ -46,6 +49,9 @@ def additionalOptions():
         #for return, call function again
         if skill == "return":
             additionalOptions()
+    
+    if addiOption == "InCollege Important Links":
+        ImportantLinks()
 
 
 def jobSearch(user):
@@ -172,6 +178,21 @@ def CreateAcc():
                 break
             file.close
 
+            settingsFile = open("usersettings.txt", "a")
+            settingsFile.write(newUser)
+            settingsFile.write(" ")
+            settingsFile.write("On")        #InCollege Email
+            settingsFile.write(" ")
+            settingsFile.write("On")        #SMS
+            settingsFile.write(" ")
+            settingsFile.write("On")        #Targeted Advertising
+            settingsFile.write(" ")
+            settingsFile.write("English")   #Language
+            settingsFile.write(" ")
+            settingsFile.write("\n")
+
+            settingsFile.close()
+
             print('\nCongrats! You are successfully sign up.' 
                     '\nYou can login now...')
 
@@ -185,7 +206,7 @@ def CreateAcc():
 def LogIn():
     global user
     while True:
-        user = str(input("\nPlease enter your username: "))
+        username = str(input("\nPlease enter your username: "))
         password = str(input("\nPlease enter your password: "))
 
         # login success system will tell them "You have successfully logged in"
@@ -194,23 +215,21 @@ def LogIn():
         #read textfile and check if they are equal
         for line in open("userfile.txt", "r").readlines():
             savedLogin = line.split() #stores results in a list of two strings and splits on the space
-            if user==savedLogin[0] and password==savedLogin[1]:
+            if username==savedLogin[0] and password==savedLogin[1]:
                 print("\n*** You have successfully logged in! ***")
+                user = username
                 additionalOptions()
-                break
+                return
 
-        else:
-            print("\n*** Incorrect username/password, please try again. ***")
-            continue
-        break #break out of while loop
+        print("\n*** Incorrect username/password, please try again. ***")
 
 def WatchVideo():
     print("Video is now playing...")
 
 def General():
-    generalInput = str(input("Sign up\n" "Help Center\n" "About\n" "Press\n" "Blog\n" "Careers\n" "Developers\n"))
+    generalInput = str(input("Sign up\n" "Help Center\n" "About\n" "Press\n" "Blog\n" "Careers\n" "Developers\n" "Go Back\n"))
     if generalInput == "Sign up":
-        CreateAcc()
+        loginOptions()
     if generalInput == "Help Center":
         print("\nWe're here to help.\n")
     if generalInput == "About":
@@ -223,6 +242,9 @@ def General():
         print("\nUnder construction\n")
     if generalInput == "Developers":
         print("\nUnder construction\n")
+    if generalInput == "Go Back":
+        print("Returning... \n")
+        return
 
 def UsefulLinks():
     usefulLinksInput = str(input("Please enter where you would like to go:\n" "General\n" "Browse InCollege\n" "Business Solutions\n" "Directories \n" "Go Back\n"))
@@ -235,7 +257,7 @@ def UsefulLinks():
     if usefulLinksInput == "Directories":
         print("\nUnder construction\n")
     if usefulLinksInput == "Go Back":
-        print("Returning\n")
+        print("Returning...\n")
         return                      #Return to previous location
 
 def ImportantLinks():
@@ -250,8 +272,8 @@ def ImportantLinks():
         elif importantLinksInput == "User Agreement":
             print("Welcome and thank you for using InCollege! When using this application, you are agreeing to our terms, so please take a few minutes to read over the user agreement below.\n" "InCollege is licensed to you(end-user) by InCollege inc., located at 4202 E Fowler Ave. Tampa, FL, 33612, United States (Licensor), for use only under the terms of thus license agreement. Our VAT number is SE99999911999. By downloading the Licensed Application from Apple and Google's software distribution platforms, you indicate that you agree to be bound by all the terms and conditions of this license agreement. ")
         elif importantLinksInput == "Privacy Policy":
-           GuestControls()
             print("At InCollege, our fundamental philosophy is 'student's first.' That value power's all of the decisions we make, including how we gather and respect your personal information. Below we have created a policy as clear as possible so our member's can be informed.\n " "We will only collect the required information fro our users through the InCollege application in order to better understand our users. Information will be collected through cookies and other tracking technologies and will only be shared within InColleg inc. Users have special rughts over their data and can choose what they wish to share with our team. You may contact us at incollege@incollege.net for any questions or concerns.")
+            GuestControls()
         elif importantLinksInput == "Cookie Policy":
             print("At InCollege, we believe in being clear and open about how we use your information. In the spirit of transparency, this policy provides detailed information about how and when we use cookies.\n" "Cookies are files created by websites you may visit and our company uses cookies in orer to provide the best possible user experience. There are first-party cookies, session cookies, third-party cookies, persistent cookies, and secure cookies. InCollege will only use the necessary cookies in order to better understand our users and you can manage the use of your cookies at the bottom of your screen.")
         elif importantLinksInput == "Copyright Policy":
@@ -259,10 +281,60 @@ def ImportantLinks():
         elif importantLinksInput == "Brand Policy":
             print("The InCollege brand is to put student's first. Any use or mention of the brand should keep the company's main goal in mind and be sure to properly represent InCollege.")
         elif importantLinksInput == "Go Back":
-            print("Return \n")
+            print("Returning...\n")
             break
+
+
 def GuestControls():
+    while user:     #while user has a value, aka the user is logged in
+        print("Your current settings are:\n")
+        lines = open("usersettings.txt", "r").readlines()
+        updatedLines = []
+        for line in lines:      #search for the user in the settings file
+            splitLine = line.split()
+            if user == splitLine[0]:     
+                print("InCollege Email: ", splitLine[1], "\n",
+                      "SMS: ", splitLine[2], "\n",
+                      "Targeted Advertising: ", splitLine[3], "\n",
+                      "Language: ", splitLine[4], "\n")
+                changeSetting = str(input("Which setting would you like to change? or enter None for none\n"))
+                if changeSetting == "None":
+                    return
+                else:
+                    if changeSetting == "InCollege Email":
+                        if splitLine[1] == "On":
+                            splitLine[1] = "Off"
+                        else:
+                            splitLine[1] = "On"
+                    if changeSetting == "SMS":
+                        if splitLine[2] == "On":
+                            splitLine[2] = "Off"
+                        else:
+                            splitLine[2] = "On"
+                    if changeSetting == "Targeting Advertising":
+                        if splitLine[3] == "On":
+                            splitLine[3] = "Off"
+                        else:
+                            splitLine[3] = "On"
+                    if changeSetting == "Language":
+                        if splitLine[4] == "On":
+                            splitLine[4] = "Off"
+                        else:
+                            splitLine[4] = "On"
+                line = splitLine[0] + " " + splitLine[1] + " " + splitLine[2] + " " + splitLine[3] + " " + splitLine[4] + "\n"
+                updatedLines.append(line)
+        out = open("usersettings.txt", 'w')
+        out.writelines(updatedLines)
+        out.close()
+        break
+
+
     
+    #if the user isn't logged in:
+    print("You are not sighe")
+
+
+
 
 #THIS MUST BE MAIN FUNC
 #Using existing InCollege account or Creating a new account
@@ -273,9 +345,9 @@ if VideoOption == "Y" or VideoOption == "y":
 
 while(True):
     links = str(input("Would you like to view Useful Links or InCollege Important Links:\n"))
-    if links == "Useful Links" or "useful links":
+    if links == "Useful Links":
         UsefulLinks()
-    elif links == "InCollege Important Links" or "incollege important links":
+    elif links == "InCollege Important Links":
         ImportantLinks()
     else:
         print("Invald input, please try again")
