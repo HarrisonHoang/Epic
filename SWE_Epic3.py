@@ -241,26 +241,28 @@ def UsefulLinks():
 def ImportantLinks():
     while True: 
         importantLinksInput = str(input("Please enter where you would like to go:\n" "A Copyright Notice\n" "About Accessibility\n" "User Agreement\n" "Privacy Policy\n" "Cookie Policy\n" "Copyright Policy\n" "Brand Policy\n" "Guest Controls\n" "Languages\n" "Go back\n"))
-        if importantLinksInput == "A Copyrigth Notice":
-            print()
+        if importantLinksInput == "A Copyright Notice":
+            print("Copywright 2022 InCollege inc. All rights reserved")
         elif importantLinksInput == "About":
-            print()
+            print("InCollege is a fast-growing application dedicated to bringing useful tools for college students around the world. Our goal is to assist college students in being as successful as possible.")
         elif importantLinksInput == "Accessibility":
-            print()
+            print("InCollege is committed to providing a website that is accessible to the widest possible audience, regardless of technology or ability. We are actively working to increase the usability and accessibility of InCollege and in doing so adhere to many of the available standards and guidelines.")
         elif importantLinksInput == "User Agreement":
-            print()
+            print("Welcome and thank you for using InCollege! When using this application, you are agreeing to our terms, so please take a few minutes to read over the user agreement below.\n" "InCollege is licensed to you(end-user) by InCollege inc., located at 4202 E Fowler Ave. Tampa, FL, 33612, United States (Licensor), for use only under the terms of thus license agreement. Our VAT number is SE99999911999. By downloading the Licensed Application from Apple and Google's software distribution platforms, you indicate that you agree to be bound by all the terms and conditions of this license agreement. ")
         elif importantLinksInput == "Privacy Policy":
-            print()
+           GuestControls()
+            print("At InCollege, our fundamental philosophy is 'student's first.' That value power's all of the decisions we make, including how we gather and respect your personal information. Below we have created a policy as clear as possible so our member's can be informed.\n " "We will only collect the required information fro our users through the InCollege application in order to better understand our users. Information will be collected through cookies and other tracking technologies and will only be shared within InColleg inc. Users have special rughts over their data and can choose what they wish to share with our team. You may contact us at incollege@incollege.net for any questions or concerns.")
         elif importantLinksInput == "Cookie Policy":
-            print()
+            print("At InCollege, we believe in being clear and open about how we use your information. In the spirit of transparency, this policy provides detailed information about how and when we use cookies.\n" "Cookies are files created by websites you may visit and our company uses cookies in orer to provide the best possible user experience. There are first-party cookies, session cookies, third-party cookies, persistent cookies, and secure cookies. InCollege will only use the necessary cookies in order to better understand our users and you can manage the use of your cookies at the bottom of your screen.")
         elif importantLinksInput == "Copyright Policy":
-            print()
+            print("You may not share, distribute, or reproduce in any way any copyrighted material, trademarks, or other proprietary information belonging to others without obtaining the prior written consent of the owner of such proprietary rights. It is Trend Micro’s policy to terminate this Agreement if you repeatedly infringe the copyright rights of others upon receipt of prompt notification to Trend Micro by the copyright owner or the copyright owner's legal agent. Without limiting the foregoing, if you believe that your work has been copied and posted on the Trend Micro Products/Services in a way that constitutes copyright infringement, please provide Trend Micro with the following information: (a) an electronic or physical signature of the person authorized to act on behalf of the owner of the copyright interest; (b) a description of the copyrighted work that you claim has been infringed; (c) a description of where the material that you claim is infringing is located on the Trend Micro Products/Services; (d) your address, telephone number, and email address; (e) a written statement by you that you have a good faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law; and (f) a statement by you, made under penalty of perjury, that the above information in your notice is accurate and that you are the copyright owner or authorized to act on the copyright owner's behalf.")
         elif importantLinksInput == "Brand Policy":
-            print()
+            print("The InCollege brand is to put student's first. Any use or mention of the brand should keep the company's main goal in mind and be sure to properly represent InCollege.")
         elif importantLinksInput == "Go Back":
             print("Return \n")
             break
-        
+def GuestControls():
+    
 
 #THIS MUST BE MAIN FUNC
 #Using existing InCollege account or Creating a new account
