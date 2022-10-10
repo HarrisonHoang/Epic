@@ -1,3 +1,4 @@
+# pytest test_SWE_Epic3.py -v
 import SWE_Epic3
      
 #Test account login- make sure user states whether they have an InCollege account
@@ -61,4 +62,89 @@ def test_jobSearch():
     assert countJob > 5
     print("All permitted job are create, please come back later")
 
+
+def test_General():
+    generalInput = "Sign up"
+    assert generalInput == "Sign up"
+    # assert SWE_Epic3.loginOptions() == True
+    generalInput = "Help Center"
+    assert generalInput == "Help Center"
+    print("\nWe're here to help.\n")
+    generalInput = "Blog"
+    assert generalInput == "Blog"
+    print("\nUnder construction\n")
+    generalInput = "About" or "Go Back" or "Developers" or "Careers"
+    assert generalInput == "About"
+    print("\nInCollege: Welcome to InCollege, the world's largest college student network with many users in many countries and territories worldwide\n")
+
+
+def test_UsefulLinks():
+    usefulLinksInput = "General"
+    assert usefulLinksInput == "General"
+    #SWE_Epic3.General()
+    usefulLinksInput = "Business Solution"
+    assert usefulLinksInput == "Business Solution"
+    print("\nUnder construction\n")
+    usefulLinksInput = "Directories" or "Browse InCollege"
+    assert usefulLinksInput == "Business Solution" or "Browse InCollege"
+    print("\nUnder construction\n")
+
+
+def test_ImportantLinks():
+    importantLinksInput = "Privacy Policy"
+    assert importantLinksInput == "Privacy Policy"
+    SWE_Epic3.GuestControls()
+    print("successfully go to GuestControl() when it print last line: You are not sighe")
+    importantLinksInput = "About"
+    assert importantLinksInput == "About"
+    print("InCollege is a fast-growing application dedicated to bringing useful tools for college students around the world. Our goal is to assist college students in being as successful as possible.")
+    importantLinksInput = "A Copyright Notice"
+    assert importantLinksInput == "A Copyright Notice"
+    print("Copywright 2022 InCollege inc. All rights reserved")
+
+def test_GuestControls():
+    user = "haysc"
+    while user:     #while user has a value, aka the user is logged in
+        print("Your current settings are:\n")
+        lines = open("usersettings.txt", "r").readlines()
+        updatedLines = []
+        for line in lines:      #search for the user in the settings file
+            splitLine = line.split()
+            if user == splitLine[0]:     
+                print("InCollege Email: ", splitLine[1], "\n",
+                      "SMS: ", splitLine[2], "\n",
+                      "Targeted Advertising: ", splitLine[3], "\n",
+                      "Language: ", splitLine[4], "\n")
+                # changeSetting = str(input("Which setting would you like to change? or enter None for none\n"))
+                changeSetting = "InCollege Email"
+                if changeSetting == "None":
+                    return
+                else:
+                    if changeSetting == "InCollege Email":
+                        if splitLine[1] == "On":
+                            splitLine[1] = "Off"
+                        else:
+                            splitLine[1] = "On"
+                    if changeSetting == "SMS":
+                        if splitLine[2] == "On":
+                            splitLine[2] = "Off"
+                        else:
+                            splitLine[2] = "On"
+                    if changeSetting == "Targeting Advertising":
+                        if splitLine[3] == "On":
+                            splitLine[3] = "Off"
+                        else:
+                            splitLine[3] = "On"
+                    if changeSetting == "Language":
+                        if splitLine[4] == "On":
+                            splitLine[4] = "Off"
+                        else:
+                            splitLine[4] = "On"
+                line = splitLine[0] + " " + splitLine[1] + " " + splitLine[2] + " " + splitLine[3] + " " + splitLine[4] + "\n"
+                updatedLines.append(line)
+        out = open("usersettings.txt", 'w')
+        out.writelines(updatedLines)
+        out.close()
+        break
+    
 # pytest test_SWE_Epic3.py -v
