@@ -173,7 +173,7 @@ def CreateAcc():
                 countAcc = len(file.readlines())
                 #print(countAcc)
 
-            if countAcc > 5:
+            if countAcc > 10:
                 print ("All permitted accounts are created, please come back later")
                 break
             file.close
