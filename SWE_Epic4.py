@@ -1,4 +1,4 @@
-#Epic 3
+#Epic 4
 
 #Global Variables
 
@@ -14,6 +14,7 @@ def additionalOptions():
     addiOption = str(input("\nPress J to search for a job:\n"
                         "Press F to find someone you know:\n"
                         "Press S to learn a new skill:\n"
+                        "Press N to see your network:\n"
                         "Or, enter InCollege Important Links to view important InCollege links\n"))
     if addiOption == "J" or addiOption == "j":
         jobSearch(user)
@@ -49,10 +50,14 @@ def additionalOptions():
         #for return, call function again
         if skill == "return":
             additionalOptions()
-    
+    if addiOption == "N" or addiOption == "n":
+        network(user)
+
     if addiOption == "InCollege Important Links":
         ImportantLinks()
 
+def network(user):
+    print("Inprogress")
 
 def jobSearch(user):
     #Ask user if they want to add a job or return
@@ -96,7 +101,7 @@ def jobSearch(user):
         else:  
             NewJobPost =str(input("Invalid option, please try again. (y/n/r)"))
 
-    
+"""
 def SearchPeople():
     userFound = False
     searchFirstName = str(input("\nEnter the first name of the person who you would like to find, or enter R to return\n"))
@@ -111,6 +116,67 @@ def SearchPeople():
             break
 
     if userFound == False:
+        print("They are not yet a part of the InCollege system.")
+
+    return userFound
+"""
+
+def SearchPeople2():
+    userFound = []
+    choice = str(input("\n Select a way to search up another user\n"
+                        "Press F to search by first name:\n"
+                        "Press L to search by last name:\n"
+                        "Press C to search by college:\n"
+                        "Press M to search by major:\n"))
+    if choice == "F" or choice == "f":
+        searchFirstName = str(input("\nEnter the first name of the person who you would like to find, or enter R to return\n"))
+        if searchFirstName == "R" or searchFirstName == "r":
+            return 0
+        for line in open("userfile.txt", "r").readlines():
+            savedLogin = line.split() #stores results in a list of two strings and splits on the space
+            if searchFirstName.lower()==savedLogin[2].lower():
+                x = savedLogin[2] 
+                y = savedLogin[3]
+                z = x + ' ' + y
+                userFound.append(z)
+                break
+    if choice == "L" or choice == "l":
+        searchLastName = str(input("\nEnter the last name of the person who you would like to find, or enter R to return\n"))
+        if searchLastName == "R" or searchLastName == "r":
+            return 0
+        for line in open("userfile.txt", "r").readlines():
+            savedLogin = line.split() #stores results in a list of two strings and splits on the space
+            if searchLastName.lower()==savedLogin[3].lower():
+                x = savedLogin[2] 
+                y = savedLogin[3]
+                z = x + ' ' + y
+                userFound.append(z)
+                break
+    if choice == "C" or choice == "c":
+        searchCollege = str(input("\nEnter the college of the person who you would like to find, or enter R to return\n"))
+        if searchCollege == "R" or searchCollege == "r":
+            return 0
+        for line in open("userfile.txt", "r").readlines():
+            savedLogin = line.split() #stores results in a list of two strings and splits on the space
+            if searchCollege.lower()==savedLogin[4].lower():
+                x = savedLogin[2] 
+                y = savedLogin[3]
+                z = x + ' ' + y
+                userFound.append(z)
+                break
+    if choice == "M" or choice == "m":
+        searchMajor = str(input("\nEnter the major of the person who you would like to find, or enter R to return\n"))
+        if searchMajor == "R" or searchMajor == "r":
+            return 0
+        for line in open("userfile.txt", "r").readlines():
+            savedLogin = line.split() #stores results in a list of two strings and splits on the space
+            if searchMajor.lower()==savedLogin[5].lower():
+                x = savedLogin[2] 
+                y = savedLogin[3]
+                z = x + ' ' + y
+                userFound.append(z)
+                break
+    if len(userFound) == 0:
         print("They are not yet a part of the InCollege system.")
 
     return userFound
@@ -157,6 +223,8 @@ def CreateAcc():
             #after username and password are valid, ask for first and last name, and store new user password, first name, and last name in file          
             firstName = str(input("\nPlease enter your first name \n"))
             lastName = str(input("\nPlease enter your last name\n"))
+            College = str(input("\nPlease enter the college you attend \n"))
+            major = str(input("\nPlease enter your major\n"))
 
             file = open("userfile.txt", "a")
             file.write(newUser)
@@ -166,6 +234,10 @@ def CreateAcc():
             file.write(firstName)
             file.write(" ")
             file.write(lastName)
+            file.write(" ")
+            file.write(College)
+            file.write(" ")
+            file.write(major)
             file.write("\n")
 
             countAcc = 0
@@ -173,7 +245,7 @@ def CreateAcc():
                 countAcc = len(file.readlines())
                 #print(countAcc)
 
-            if countAcc > 5:
+            if countAcc > 10:
                 print ("All permitted accounts are created, please come back later")
                 break
             file.close
@@ -360,4 +432,3 @@ if __name__ == "__main__":
 
 #call prelogin screen
 #loginOptions()
-
