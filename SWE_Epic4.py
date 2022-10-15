@@ -403,7 +403,7 @@ def GuestControls():
 
     
     #if the user isn't logged in:
-    print("You are not sighe")
+    print("You are not signed in")
 
 
 
