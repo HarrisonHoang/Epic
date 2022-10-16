@@ -15,6 +15,7 @@ def additionalOptions():
                         "Press F to find someone you know:\n"
                         "Press S to learn a new skill:\n"
                         "Press N to see your network:\n"
+                        "Press P to see pending friend requests: \n"
                         "Or, enter InCollege Important Links to view important InCollege links\n"))
     if addiOption == "J" or addiOption == "j":
         jobSearch(user)
@@ -52,7 +53,8 @@ def additionalOptions():
             additionalOptions()
     if addiOption == "N" or addiOption == "n":
         network(user)
-
+    if addiOption == "P" or addiOption == "p":
+        friendRequest()
     if addiOption == "InCollege Important Links":
         ImportantLinks()
 
