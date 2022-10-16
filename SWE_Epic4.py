@@ -57,7 +57,20 @@ def additionalOptions():
         ImportantLinks()
 
 def network(user):
-    print("Inprogress")
+    friends =[] #friends list initially empty
+    friend = str(input("How would you like your new friend's name stored in your friend's list?"))
+    friends.append(friend)
+    viewList = str(input("Would you like to see your network"))
+    if viewList == "Yes" or viewList == "yes":
+        print(friends)
+    if viewList == "No" or viewList == "no":
+        return
+    friendRemoval = str(input("Would you like to remove a friend?"))
+    if friendRemoval == "yes":
+        remove = str(input("Who would you like to remove?"))
+        friends.remove(remove)
+    if friendRemoval == "no":
+        return
 
 def jobSearch(user):
     #Ask user if they want to add a job or return
@@ -181,6 +194,15 @@ def SearchPeople2():
 
     return userFound
 
+def friendRequest():
+    print(“You have a pending friend request”)
+    requestOption = str(input(“Would you like to accept or reject this request?”))
+    if requestOption == "accept" or requestOption == "Accept":
+        network()
+    if requestOption == "reject" or requestOption == "Reject":
+        return
+    
+
 #Pre-login screen
 def loginOptions():
     LogOption =str(input("\nDo you have an InCollege account?\n"
@@ -225,6 +247,7 @@ def CreateAcc():
             lastName = str(input("\nPlease enter your last name\n"))
             College = str(input("\nPlease enter the college you attend \n"))
             major = str(input("\nPlease enter your major\n"))
+            
 
             file = open("userfile.txt", "a")
             file.write(newUser)
@@ -297,7 +320,7 @@ def LogIn():
 
 def WatchVideo():
     print("Video is now playing...")
-
+    
 def General():
     generalInput = str(input("Sign up\n" "Help Center\n" "About\n" "Press\n" "Blog\n" "Careers\n" "Developers\n" "Go Back\n"))
     if generalInput == "Sign up":
