@@ -3,8 +3,7 @@
 #Global Variables
 
 user = "" 
-
-
+Request = {}
 
 
 #AFTER LOGIN = HOME PAGE
@@ -21,7 +20,7 @@ def additionalOptions():
         jobSearch(user)
 
     if addiOption == "F" or addiOption == "f":
-        SearchPeople()
+        SearchPeople2()
 
     #after selecting learn new skill, present 5 skills for user to select or return
     if addiOption == "S" or addiOption == "s":
@@ -62,6 +61,9 @@ def network(user):
     friends =[] #friends list initially empty
     friend = str(input("How would you like your new friend's name stored in your friend's list?"))
     friends.append(friend)
+    temp = []
+    temp.append(user)
+    Request[friend].append(temp)
     viewList = str(input("Would you like to see your network"))
     if viewList == "Yes" or viewList == "yes":
         print(friends)
@@ -73,6 +75,7 @@ def network(user):
         friends.remove(remove)
     if friendRemoval == "no":
         return
+
 
 def jobSearch(user):
     #Ask user if they want to add a job or return
@@ -196,9 +199,18 @@ def SearchPeople2():
 
     return userFound
 
+def pending(user):
+    Pending = []
+    for name in Request:
+        if name == user:
+            for pendingName in Request(name):
+                Pending.append(pendingName)
+    print("\n Here is your list of you pending friend request\n")
+    print(Pending)
+
 def friendRequest():
-    print(“You have a pending friend request”)
-    requestOption = str(input(“Would you like to accept or reject this request?”))
+    print("You have a pending friend request")
+    requestOption = str(input("Would you like to accept or reject this request?"))
     if requestOption == "accept" or requestOption == "Accept":
         network()
     if requestOption == "reject" or requestOption == "Reject":
@@ -218,7 +230,7 @@ def loginOptions():
             CreateAcc()
             break
         if LogOption == "F" or LogOption ==  "f":
-            if SearchPeople():
+            if SearchPeople2():
                 LogOption = str(input("\nLog in (L) or sign up (S) to join your friends\n"))
             #loginOptions() #after showing people in contacts, display login options again
          
