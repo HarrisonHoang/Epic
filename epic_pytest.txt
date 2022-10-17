@@ -2,6 +2,18 @@ To test run:
 pytest ./SWE_Epic3.py -v
 
 ===============================================================================
+Epic 4:       pytest ./SWE_Epic4.py -v
+  
+-Test created for friend request
+    friend requests are able to be received, then accepted or rejected.
+-Test created for request sent
+    sent friend requests names are in the request sents list.
+=Test created for pending
+    pending friend requests are in the friend requests list.
+    
+    
+    
+===============================================================================
 Epic 3:      pytest ./SWE_Epic3.py -v   (or -s)
 Test 2 groups of links: (Those link will availaible before and after user signs in)
 + Userful Links: 
