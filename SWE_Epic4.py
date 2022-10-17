@@ -1,9 +1,10 @@
-#Epic 4
+
 
 #Global Variables
 
 user = "" 
 Request = {}
+friends = {}
 
 
 #AFTER LOGIN = HOME PAGE
@@ -58,21 +59,26 @@ def additionalOptions():
         ImportantLinks()
 
 def network(user):
-    friends =[] #friends list initially empty
+    temp2 = []
     friend = str(input("How would you like your new friend's name stored in your friend's list?"))
-    friends.append(friend)
+    temp2.append(friend)#list containing friend input
+    friends[user].append(temp2)#appends to user friend list in dictionary  
     temp = []
     temp.append(user)
     Request[friend].append(temp)
     viewList = str(input("Would you like to see your network"))
     if viewList == "Yes" or viewList == "yes":
-        print(friends)
+        print(friends[user])
     if viewList == "No" or viewList == "no":
         return
     friendRemoval = str(input("Would you like to remove a friend?"))
     if friendRemoval == "yes":
         remove = str(input("Who would you like to remove?"))
-        friends.remove(remove)
+        friends[user].remove(remove)
+        friends[remove].remove(user)
+        if (user) not in friends:
+            print("You are currently not friends")
+            return
     if friendRemoval == "no":
         return
 
@@ -157,7 +163,12 @@ def SearchPeople2():
                 y = savedLogin[3]
                 z = x + ' ' + y
                 userFound.append(z)
-                break
+                sendRequest = str(input("Would you like to send them a friend request?"))
+                if sendRequest == "yes":
+                    requestSent()
+                    return
+                if sendRequest == "no":
+                    break
     if choice == "L" or choice == "l":
         searchLastName = str(input("\nEnter the last name of the person who you would like to find, or enter R to return\n"))
         if searchLastName == "R" or searchLastName == "r":
@@ -169,7 +180,12 @@ def SearchPeople2():
                 y = savedLogin[3]
                 z = x + ' ' + y
                 userFound.append(z)
-                break
+                sendRequest = str(input("Would you like to send them a friend request?"))
+                if sendRequest == "yes":
+                    requestSent()
+                    return
+                if sendRequest == "no":
+                    break
     if choice == "C" or choice == "c":
         searchCollege = str(input("\nEnter the college of the person who you would like to find, or enter R to return\n"))
         if searchCollege == "R" or searchCollege == "r":
@@ -181,7 +197,12 @@ def SearchPeople2():
                 y = savedLogin[3]
                 z = x + ' ' + y
                 userFound.append(z)
-                break
+                sendRequest = str(input("Would you like to send them a friend request?"))
+                if sendRequest == "yes":
+                    requestSent()
+                    return
+                if sendRequest == "no":
+                    break
     if choice == "M" or choice == "m":
         searchMajor = str(input("\nEnter the major of the person who you would like to find, or enter R to return\n"))
         if searchMajor == "R" or searchMajor == "r":
@@ -193,13 +214,18 @@ def SearchPeople2():
                 y = savedLogin[3]
                 z = x + ' ' + y
                 userFound.append(z)
-                break
+                sendRequest = str(input("Would you like to send them a friend request?"))
+                if sendRequest == "yes":
+                    requestSent()
+                    return
+                if sendRequest == "no":
+                    break
     if len(userFound) == 0:
         print("They are not yet a part of the InCollege system.")
 
     return userFound
 
-def pending(user):
+def pending():
     Pending = []
     for name in Request:
         if name == user:
@@ -216,7 +242,15 @@ def friendRequest():
     if requestOption == "reject" or requestOption == "Reject":
         return
     
-
+def requestSent():
+    print("Request sent")
+    RequestSent=[]
+    for name in Request:
+        if name == user:
+            for requestName in Request(name):
+                RequestSent.append(requestName)
+                return
+    
 #Pre-login screen
 def loginOptions():
     LogOption =str(input("\nDo you have an InCollege account?\n"
@@ -466,6 +500,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-
 #call prelogin screen
 #loginOptions()
+
+

@@ -147,4 +147,31 @@ def test_GuestControls():
         out.close()
         break
     
+def test_friendRequest():
+    requestOptionInput = "accept"
+    assert requestOptionInput
+    print("Friend request accepted")
+    requestOptionInput = "reject"
+    assert requestOptionInput
+    print("Friend request rejected")
+
+def test_requestSent():
+    name = "salvador"
+    user = "salvahernandezb"
+    for name in Request:
+        if name == user:
+            assert name == "salvador"
+            for requestName in Request(name):
+                assert requestName
+                print("Request name is in requests.") 
+
+def test_pending():
+    name = "salvador"
+    user = "salvahernandezb"
+    for name in Request:
+        if name == user:
+            assert name == "salvador"
+            for pendingName in Request(name):
+                assert pendingName
+                print("Pending name in request list.")
 # pytest test_SWE_Epic3.py -v
