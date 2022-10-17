@@ -10,7 +10,10 @@ Epic 4:       pytest test_SWE_Epic4.py -v
     sent friend requests names are in the request sents list.
 =Test created for pending
     pending friend requests are in the friend requests list.
-    
+-Test created for network
+    able to find friends, view friend list and remove friend
+-Test created for search people
+    searches for students in the system by last name, university, or major
     
     
 ===============================================================================
