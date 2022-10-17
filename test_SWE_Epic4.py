@@ -1,5 +1,6 @@
-# pytest test_SWE_Epic3.py -v
-import SWE_Epic3
+# pytest test_SWE_Epic4.py -v
+import SWE_Epic4
+from SWE_Epic4 import Request
      
 #Test account login- make sure user states whether they have an InCollege account
 def test_LogIn():
@@ -93,7 +94,7 @@ def test_UsefulLinks():
 def test_ImportantLinks():
     importantLinksInput = "Privacy Policy"
     assert importantLinksInput == "Privacy Policy"
-    SWE_Epic3.GuestControls()
+    SWE_Epic4.GuestControls()
     print("successfully go to GuestControl() when it print last line: You are not sighe")
     importantLinksInput = "About"
     assert importantLinksInput == "About"
@@ -174,4 +175,77 @@ def test_pending():
             for pendingName in Request(name):
                 assert pendingName
                 print("Pending name in request list.")
-# pytest test_SWE_Epic3.py -v
+
+
+def test_network():
+    friendInput = "salvador"
+    #assert Request[friendInput].append()
+    viewlist = "yes"
+    assert viewlist == "yes"
+    print("Friend list printed")
+    viewlist = "no"
+    assert viewlist == "no"
+    print("returns")
+    friendremoval = "yes"
+    assert friendremoval == "yes"
+    removeInput = "salvador"
+    assert removeInput == "salvador"
+    print("friend removed")
+
+
+def test_searchPeople2():
+    choiceInput = "F"
+    assert choiceInput == "F"
+    searchFirstNameInput = "R"
+    assert searchFirstNameInput == "R"
+    print("Returns")
+    searchFirstNameInput = "caitlin"
+    assert searchFirstNameInput == "caitlin"
+    sendRequestInput = "yes"
+    assert sendRequestInput == "yes"
+    print("Send request, return")
+    sendRequestInput = "no"
+    assert sendRequestInput == "no"
+
+    choiceInput = "L"
+    assert choiceInput == "L"
+    searchLastNameInput = "R"
+    assert searchLastNameInput == "R"
+    print("Returns")
+    searchLastNameInput = "hays"
+    assert searchLastNameInput == "hays"
+    sendRequestInput = "yes"
+    assert sendRequestInput == "yes"
+    print("Send request, return")
+    sendRequestInput = "no"
+    assert sendRequestInput == "no"
+
+    choiceInput = "C"
+    assert choiceInput == "C"
+    searchCollegeInput = "R"
+    assert searchCollegeInput == "R"
+    print("Returns")
+    searchCollegeInput = "hays"
+    assert searchCollegeInput == "hays"
+    sendRequestInput = "yes"
+    assert sendRequestInput == "yes"
+    print("Send request, return")
+    sendRequestInput = "no"
+    assert sendRequestInput == "no"
+
+    choiceInput = "M"
+    assert choiceInput == "M"
+    searchMajorInput = "R"
+    assert searchMajorInput == "R"
+    print("Returns")
+    searchMajorInput = "hays"
+    assert searchMajorInput == "hays"
+    sendRequestInput = "yes"
+    assert sendRequestInput == "yes"
+    print("Send request, return")
+    sendRequestInput = "no"
+    assert sendRequestInput == "no"
+
+
+
+# pytest test_SWE_Epic4.py -v

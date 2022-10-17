@@ -1,8 +1,8 @@
 To test run:
-pytest ./SWE_Epic3.py -v
+pytest test_SWE_Epic4.py -v
 
 ===============================================================================
-Epic 4:       pytest ./SWE_Epic4.py -v
+Epic 4:       pytest test_SWE_Epic4.py -v
   
 -Test created for friend request
     friend requests are able to be received, then accepted or rejected.
