@@ -64,13 +64,25 @@ def additionalOptions():
 
 # Edit: additionalOption(), profile()
 def profile():
-    print("\n\nPROFILE\n")
-    print("\nTitle: \n")
-    print("\nMajor: \n")
-    print("\nAt University: \n")
-    print("\nAbout: (paragraph): \n")
-    print("\nExperience: (up to 3 past jobs): \n")
-    print("\nEducation: \n")
+    while user: #while user has a value, aka the user is logged in
+        print("\n\nPROFILE\n\n")
+
+        #If user created profile already, then read from userprofile.txt
+        lines = open("userprofile.txt", "r").readlines()
+        #updatedLines = []
+        for line in lines:
+            splitLine = line.split()
+            if user == splitLine[0]:
+                print("\nUser:", splitLine[0], "\n")
+                print("\nTitle:", splitLine[1], "\n")
+                print("\nMajor:", splitLine[2], "\n")
+                print("\nAt University: \n")
+                print("\nAbout: (paragraph): \n")
+                print("\nExperience: (up to 3 past jobs): \n")
+                print("\nEducation: \n")
+                #updatedLines.append(line)
+        
+        #If user have NOT create or want to edit profile now, then write/append txt.
 
 
 def network(user):
