@@ -1,5 +1,3 @@
-
-
 #Global Variables
 
 user = "" 
