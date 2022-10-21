@@ -1,5 +1,4 @@
 #Global Variables
-
 user = "" 
 Request = {}
 friends = {}
