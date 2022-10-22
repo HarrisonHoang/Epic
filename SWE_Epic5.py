@@ -298,10 +298,18 @@ def CreateAcc():
 
         if len(newPass)>7 and len(newPass)<13 and upper and digit and specChar:   
             #after username and password are valid, ask for first and last name, and store new user password, first name, and last name in file          
-            firstName = str(input("\nPlease enter your first name \n"))
-            lastName = str(input("\nPlease enter your last name\n"))
-            College = str(input("\nPlease enter the college you attend \n"))
-            major = str(input("\nPlease enter your major\n"))
+            firstName = str(input("\nPlease enter your first name: "))
+            lastName = str(input("\nPlease enter your last name: "))
+            college = str(input("\nPlease enter the college you attend: "))
+            college = ' '.join(elem.capitalize() for elem in college.split())
+
+            major = str(input("\nPlease enter your major: "))
+            major = ' '.join(elem.capitalize() for elem in major.split())
+            
+            title = str(input("\n Please enter your title for your account: "))
+            about = str(input("\nPlease enter about yourself: "))
+            experiance = str(input("\nPlease your last three job experiance: "))
+
             
 
             file = open("userfile.txt", "a")
@@ -313,7 +321,7 @@ def CreateAcc():
             file.write(" ")
             file.write(lastName)
             file.write(" ")
-            file.write(College)
+            file.write(college)
             file.write(" ")
             file.write(major)
             file.write("\n")
