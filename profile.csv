@@ -1,4 +1,5 @@
-name,major,edu
-toan,ce,math
-name,major,edu
-an,cs,"hcc, usf"
+name,title,major,univer,about,experi,edu
+
+Toan,3 yrs junior,comp eng,usf,"a student of usf, junior.",2 years coding,bachelor
+
+Hoa,Comp Scien,3 years computer science,hcc,looking for job in Tampa,4 years coding,hcc
