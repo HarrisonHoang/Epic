@@ -210,6 +210,28 @@ def profile():
             General()
         print("\nPress (x) to quit\n")
 
+def display(user):
+    search = str(input("Enter a name of your friend to view their profile"))
+    result = friend[user].count(search)
+    if result > 0:
+        with open('profile.csv', 'r') as file:
+        csv_reader = csv.DictReader(file)
+        for line in csv_reader:
+            if line['name'] == search:
+                print("\nProfile of: " + line['name'])
+                print("Title: " + line['title'])
+                print("Major: " + line['major'])
+                print("University: " + line['univer'])
+                print("About me: " + line['about'])
+                print("Experience 1: " + line['experi1'])
+                print("Experience 2: " + line['experi2'])
+                print("Experience 3: " + line['experi3'])
+                print("Education: " + line['edu'])
+            else:
+                print("User does not have a profile")
+    else:
+        print("User is not in your friends list")
+
 
 def network(user):
     temp2 = []
