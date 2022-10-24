@@ -1,6 +1,6 @@
 # pytest test_SWE_Epic5.py -v
-import SWE_Epic4
-from SWE_Epic4 import Request
+import SWE_Epic5
+from SWE_Epic5 import Request
      
 #Test account login- make sure user states whether they have an InCollege account
 def test_LogIn():
@@ -245,7 +245,94 @@ def test_searchPeople2():
     print("Send request, return")
     sendRequestInput = "no"
     assert sendRequestInput == "no"
+     
+#Test profiles
+def test_profile():
+     optionInput = "c"
+     assert optionInput == "c"
+     title = "student"
+     assert title == "student"
+     major = "computer science"
+     assert major == "computer science"
+     univer = "University of South Florida"
+     assert univer == "University of South Florida"
+     about = "I am a senior at USF looking for connections with other students"
+     assert about == "I am a senior at USF looking for connections with other students"
+     print("For experience, you can insert up to 3 past jobs. If none, enter 0" + 
+                "(include title, employer, data started and ended, location, and describe what you did")
+     experi1 = "Google"
+     assert experi1 == "Google"
+     experi2 = "Facebook"
+     assert experi2 == "Facebook"
+     experi3 = "Twitter"
+     assert experi3 == "Twitter"
+     edu = "USF, comp sci, 4 years"
+     assert edu == "USF, comp sci, 4 years"
+     optionInput = "v"
+     assert optionInput == "v"
+      print("\nProfile of: Sophia" )
+      print("Title: student")
+      print("Major: computer science")
+      print("University: University of South Florida")
+      print("About me: I am a senior at USF looking for connections with other students")
+      print("Experience 1: Google")
+      print("Experience 2: Facebook")
+      print("Experience 3: Twitter")
+      print("Education: USF, comp sci, 4 years")
+     optionInput = "e"
+     assert optionInput == "e"
+     print("\nProfile of: Sophia")
+     print("Note: Press 'e' if edit, press k to keep. ")
+     print("Title: student")
+     choice = "e"
+     assert choice == "e" or "k"
+     print("Enter title: ")
+     print("Major: computer science")
+     choice = "e"
+     assert choice == "e" or "k"
+     print("Enter major: ")
+     print("University: University of South Florida")
+     choice = "e"
+     assert choice == "e" or "k"
+     univer = "University of Illinois"
+     assert univer == "University of Illinois"
+     print("About me: I am a senior at USF looking for connections with other students")
+     choice = "e"
+     assert choice == "e" or "k"
+     about = "I'm a recent dropout"
+     assert about == "I'm a recent dropout"
+     print("Experience 1: Google")
+     choice = "k"
+     assert choice == "e" or "k"
+     print("Experience 2: Facebook")
+     choice = "k"
+     assert choice == "e" or "k"
+     print("Experience 3: Twitter")
+     choice = "e"
+     assert choice == "e" or "k"
+     experi3 = "Instagram"
+     assert experi3 == "Instagram"
+     print("Education: USF, comp sci, 4 years")
+     choice = "e"
+     assert choice == "e" or "k"
+     edu = "ISU, cyber security, 3 years"
+     assert edu == "ISU, cyber security, 3 years"
+     optionInput = "x"
+     assert optionInput == "x"
+     print("\nPress (x) to quit\n")
 
-
-
+#Test display
+def display():
+     search = "Steven Jobs"
+     assert search == "Steven Jobs"
+      print("\nProfile of: Steven Jobs")
+      print("Title: student")
+      print("Major: computer science")
+      print("University: University of California")
+      print("About me: I am a fifth year computer science major")
+      print("Experience 1: Gooogle")
+      print("Experience 2: Best Buy")
+      print("Experience 3: Apple")
+      print("Education: UCLA, computer science, 5 yrs")
+          
 # pytest test_SWE_Epic5.py -v
