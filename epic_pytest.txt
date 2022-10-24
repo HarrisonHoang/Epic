@@ -1,5 +1,13 @@
 To test run:
-pytest test_SWE_Epic4.py -v
+pytest test_SWE_Epic5.py -v
+
+===============================================================================
+Epic 5:       pytest test_SWE_Epic5.py -v
+
+-Test created for profiles
+  tests to see if the profile information can be entered correctly and all its fields.
+-Test created for test_display
+  tests to see if the profile is able to be displayed correctly.
 
 ===============================================================================
 Epic 4:       pytest test_SWE_Epic4.py -v
