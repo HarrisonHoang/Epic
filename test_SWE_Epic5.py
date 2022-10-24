@@ -94,7 +94,7 @@ def test_UsefulLinks():
 def test_ImportantLinks():
     importantLinksInput = "Privacy Policy"
     assert importantLinksInput == "Privacy Policy"
-    SWE_Epic4.GuestControls()
+    SWE_Epic5.GuestControls()
     print("successfully go to GuestControl() when it print last line: You are not sighe")
     importantLinksInput = "About"
     assert importantLinksInput == "About"
@@ -270,15 +270,15 @@ def test_profile():
      assert edu == "USF, comp sci, 4 years"
      optionInput = "v"
      assert optionInput == "v"
-      print("\nProfile of: Sophia" )
-      print("Title: student")
-      print("Major: computer science")
-      print("University: University of South Florida")
-      print("About me: I am a senior at USF looking for connections with other students")
-      print("Experience 1: Google")
-      print("Experience 2: Facebook")
-      print("Experience 3: Twitter")
-      print("Education: USF, comp sci, 4 years")
+     print("\nProfile of: Sophia" )
+     print("Title: student")
+     print("Major: computer science")
+     print("University: University of South Florida")
+     print("About me: I am a senior at USF looking for connections with other students")
+     print("Experience 1: Google")
+     print("Experience 2: Facebook")
+     print("Experience 3: Twitter")
+     print("Education: USF, comp sci, 4 years")
      optionInput = "e"
      assert optionInput == "e"
      print("\nProfile of: Sophia")
@@ -322,17 +322,17 @@ def test_profile():
      print("\nPress (x) to quit\n")
 
 #Test display
-def display():
+def test_display():
      search = "Steven Jobs"
      assert search == "Steven Jobs"
-      print("\nProfile of: Steven Jobs")
-      print("Title: student")
-      print("Major: computer science")
-      print("University: University of California")
-      print("About me: I am a fifth year computer science major")
-      print("Experience 1: Gooogle")
-      print("Experience 2: Best Buy")
-      print("Experience 3: Apple")
-      print("Education: UCLA, computer science, 5 yrs")
+     print("\nProfile of: Steven Jobs")
+     print("Title: student")
+     print("Major: computer science")
+     print("University: University of California")
+     print("About me: I am a fifth year computer science major")
+     print("Experience 1: Gooogle")
+     print("Experience 2: Best Buy")
+     print("Experience 3: Apple")
+     print("Education: UCLA, computer science, 5 yrs")
           
 # pytest test_SWE_Epic5.py -v
