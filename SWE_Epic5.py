@@ -212,7 +212,7 @@ def profile():
 
 def display(user):
     search = str(input("Enter a name of your friend to view their profile"))
-    result = friend[user].count(search)
+    result = friends[user].count(search)
     if result > 0:
         with open('profile.csv', 'r') as file:
             csv_reader = csv.DictReader(file)
