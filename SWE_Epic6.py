@@ -21,14 +21,14 @@ def additionalOptions():
     if addiOption == "J" or addiOption == "j":
         jobSearch(user)
 
-    if addiOption == "V" or addiOption == "v":
+    elif addiOption == "V" or addiOption == "v":
         profile()
 
-    if addiOption == "F" or addiOption == "f":
+    elif addiOption == "F" or addiOption == "f":
         SearchPeople2()
 
     #after selecting learn new skill, present 5 skills for user to select or return
-    if addiOption == "S" or addiOption == "s":
+    elif addiOption == "S" or addiOption == "s":
         skill = str(input("\nSelect one of these five skills:\n"
                         "   coding practice\n"
                         "   new language\n"
@@ -36,31 +36,27 @@ def additionalOptions():
                         "   github\n"
                         "   excel\n"
                         "\n return\n"))
-
         if skill == "coding practice":
             print("\nUnder construction\n")
-
         if skill == "new language":
             print("\nUnder construction\n")
-
         if skill == "jira":
             print("\nUnder construction\n")
-
         if skill == "github":
             print("\nUnder construction\n")
-
         if skill == "excel":
             print("\nUnder construction\n")
-
         #for return, call function again
         if skill == "return":
             additionalOptions()
-    if addiOption == "N" or addiOption == "n":
+    elif addiOption == "N" or addiOption == "n":
         network(user)
-    if addiOption == "P" or addiOption == "p":
+    elif addiOption == "P" or addiOption == "p":
         friendRequest()
-    if addiOption == "InCollege Important Links":
+    elif addiOption == "InCollege Important Links":
         ImportantLinks()
+    else:
+        additionalOptions()
 
 # Edit: additionalOption(), profile()
 def profile():
@@ -260,9 +256,9 @@ def network(user):
 
 def jobSearch(user):
     #Ask user if they want to add a job or return
-    NewJobPost =str(input("\nPost a job or return? (y/n/r)\n"))
+    NewJobPost =str(input("\nChoose (p) to post, (s) to search jobs, (r) to return to General: "))
     while True: #Keep going until a valid option is put
-        if NewJobPost == "Y" or NewJobPost == "y":
+        if NewJobPost == "P" or NewJobPost == "p":
             jobTitle = input("Job title:\n")
             description = input("Description:\n")
             employer = input("Employer:\n")
@@ -288,16 +284,14 @@ def jobSearch(user):
                 countJob = len(file.readlines())
                 #print(countAcc)
 
-            if countJob > 5:
+            if countJob > 10:
                 print ("All permitted jobs are created, please come back later")
             file.close
             break
         elif NewJobPost == "R" or NewJobPost == "r":
             additionalOptions()
-        elif NewJobPost == "N" or NewJobPost == "n":
-            break
         else:  
-            NewJobPost =str(input("Invalid option, please try again. (y/n/r)"))
+            NewJobPost =str(input("Invalid option, please try again. (p/s/r"))
 
 
 def SearchPeople2():
@@ -528,7 +522,7 @@ def WatchVideo():
     
 def General():
     generalInput = str(input("\nSign up\n" "Help Center\n" "About\n" "Press\n" "Blog\n" "Careers\n" "Developers\n" "Go Back\n"))
-    if generalInput == "Sign up":
+    if generalInput == "Sign up" or "s":
         loginOptions()
     if generalInput == "Help Center":
         print("\nWe're here to help.\n")
@@ -548,7 +542,7 @@ def General():
 
 def UsefulLinks():
     usefulLinksInput = str(input("\n\nPlease enter where you would like to go:\n" "General\n" "Browse InCollege\n" "Business Solutions\n" "Directories \n" "Go Back\n"))
-    if usefulLinksInput == "General":
+    if usefulLinksInput == "General" or "g":
         General()
     if usefulLinksInput == "Browse InCollege":
         print("\nUnder construction\n")
