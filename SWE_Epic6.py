@@ -255,9 +255,8 @@ def network(user):
 
 
 def jobSearch(user):
-    #Ask user if they want to add a job or return
-    NewJobPost =str(input("\nChoose (p) to post, (s) to search jobs, (r) to return to General: "))
-    while True: #Keep going until a valid option is put
+    while user: #Keep going until a valid option is put
+        NewJobPost =str(input("\nDo you want to post(p), delete(d) your post or search(s) job/interships: "))
         if NewJobPost == "P" or NewJobPost == "p":
             jobTitle = input("Job title:\n")
             description = input("Description:\n")
@@ -283,15 +282,23 @@ def jobSearch(user):
             with open(r"jobfile.txt", 'r') as file:  #read each job line save in txt
                 countJob = len(file.readlines())
                 #print(countAcc)
-
             if countJob > 10:
                 print ("All permitted jobs are created, please come back later")
             file.close
             break
-        elif NewJobPost == "R" or NewJobPost == "r":
+        if NewJobPost == "S" or "s":
+            print("All jobs currently in system:")
+            with open(r"jobfile.txt", 'r') as file:  #read each job line save in txt
+                countJob = len(file.readlines())
+                print(file)
+            file.close
+
+        if NewJobPost == "D" or "d":
+            print("delete a job that you posted")
+
+        if NewJobPost == "X" or NewJobPost == "x":
             additionalOptions()
-        else:  
-            NewJobPost =str(input("Invalid option, please try again. (p/s/r"))
+        print("\nPress (x) to quit\n")
 
 
 def SearchPeople2():
