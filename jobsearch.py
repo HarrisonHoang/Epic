@@ -13,41 +13,56 @@ while True: #Keep going until a valid option is put
         location = input("Location\n")
         salary = input("Salary:\n")
 
-        file = open("jobfile.txt", "a")
-        file.write(user)
-        file.write(" ")
-        file.write(jobTitle)
-        file.write(" ")
-        file.write(description)
-        file.write(" ")
-        file.write(employer)
-        file.write(" ")
-        file.write(location)
-        file.write(" ")
-        file.write(salary)
-        file.write("\n")
-        
-        countJob = 0
-        with open(r"jobfile.txt", 'r') as file:  #read each job line save in txt
-            countJob = len(file.readlines())
-            #print(countAcc)
-        if countJob > 10:
-            print ("All permitted jobs are created, please come back later")
-        file.close
+        #file = open("jobfile.txt", "a")
+        with open("jobfile.txt", "a") as file:
+            file.write(user)
+            file.write("\n")
+            file.write(jobTitle)
+            file.write("\n")
+            file.write(description)
+            file.write("\n")
+            file.write(employer)
+            file.write("\n")
+            file.write(location)
+            file.write("\n")
+            file.write(salary)
+            file.write("\n")
+            
+            countJob = 0
+            with open(r"jobfile.txt", 'r') as file:  #read each job line save in txt
+                countJob = len(file.readlines())
+                #print(countAcc)
+            if countJob > 10:
+                print ("All permitted jobs are created, please come back later")
         break
 
 
     elif NewJobPost == "S" or "s":
         print("All jobs currently in system:")
-        f = open(r'jobfile.txt', 'r')
-        content = f.read()
-        f.close()
+
+        with open('jobfile.txt', 'r') as file:
+            #jobList = file.readlines()
+            #print(jobList)
+            data = file.read()
+            data_into_list = data.split("\n")       #put value in txt into a list
+            print(data_into_list)
+            for i in range(len(data_into_list)):    #search name of user in that list
+                if data_into_list[i] == user:
+                    print(data_into_list[i])
+                    print(data_into_list[i+1])
+                    print(data_into_list[i+2])
+                    print(data_into_list[i+3])
+                    print(data_into_list[i+4])
+                    print(data_into_list[i+5])
+
+            
+        break
 
 
 
     elif NewJobPost == "D" or "d":
         print("delete a job that you posted")
-        
+        break
 
 
     elif NewJobPost == "X" or NewJobPost == "x":
