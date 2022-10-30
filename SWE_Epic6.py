@@ -254,6 +254,28 @@ def network(user):
     if friendRemoval == "no":
         return
 
+def printJobDetail(user):
+    with open('jobfile.txt', 'r') as file:
+        data = file.read()
+        data_into_list = data.split("\n")    #put value in txt into a list
+        print(data_into_list)
+        print("\nAll jobs currently in system:")
+        for g in range(1,len(data_into_list),6):    #search name of user in that list
+            print("Job: " + data_into_list[g])
+        
+
+    with open('jobfile_status.txt', 'r') as newfile:
+        print("\nJob(s) that you applied/saved in system:")
+        data = newfile.read()
+        data_into_list = data.split("\n")
+        for a in range(len(data_into_list)):    #search name of user in that list
+            if data_into_list[a] == user:
+                print("User: " + data_into_list[a])
+                print("Job title: " + data_into_list[a+1])
+                print("Status: " + data_into_list[a+2])
+                print("Date grad: " + data_into_list[a+3])
+                print("Date start: " + data_into_list[a+4])
+                print("Description: " + data_into_list[a+5])
 
 def jobSearch(user, jobDeleted):
     while user: #Keep going until a valid option is put
@@ -311,11 +333,11 @@ def jobSearch(user, jobDeleted):
 
         #SEARCH A JOB
         elif NewJobPost == "S" or NewJobPost == "s":
+            printJobDetail(user)
+
             with open('jobfile.txt', 'r') as file:
-                print("All jobs currently in system:")
                 data = file.read()
                 data_into_list = data.split("\n")    #put value in txt into a list
-                print(data_into_list)
                 
                 selAJob = str(input("Select the job you want by enter its title ('intership' for example): "))
                 for i in range(len(data_into_list)):    #search name of user in that list
