@@ -313,8 +313,6 @@ def jobSearch(user, jobDeleted):
         elif NewJobPost == "S" or NewJobPost == "s":
             with open('jobfile.txt', 'r') as file:
                 print("All jobs currently in system:")
-                #jobList = file.readlines()
-                #print(jobList)
                 data = file.read()
                 data_into_list = data.split("\n")    #put value in txt into a list
                 print(data_into_list)
@@ -345,13 +343,6 @@ def jobSearch(user, jobDeleted):
                                             
                                         #if title is in the list (same as selAJob) and "status" is blank or 'saved'
                                         elif (data_into_list[j] == selAJob) and (data_into_list[j+1] == ' ' or data_into_list[j+1] == 'saved'):
-                                            # print(data_into_list[j-1])
-                                            # print(data_into_list[j])
-                                            # print(data_into_list[i+1])
-                                            # print(data_into_list[i+2])
-                                            # print(data_into_list[i+3])
-                                            # print(data_into_list[i+4])
-                                            
                                             grad_date = str(input("Enter grad date (mm/dd/yyyy): "))
                                             start_date = str(input("Enter date start working (mm/dd/yyyy): "))
                                             paragraph = str(input("Enter paragraph answer why you would be a good fit for this job: "))
@@ -372,7 +363,7 @@ def jobSearch(user, jobDeleted):
                                                 filenew.write("\n")
     
                                         else:
-                                            print(' ')
+                                            pass
                         
                         elif aOrS == 's':
                             if data_into_list[i-1] == user: #the user is the one posted
@@ -397,6 +388,12 @@ def jobSearch(user, jobDeleted):
                                                     filenew.write("\n")
                                                     filenew.write(' ')        #status stored in here [i+1]
                                                     filenew.write("\n")
+                                                    filenew.write(" ")
+                                                    filenew.write("\n")
+                                                    filenew.write(" ")
+                                                    filenew.write("\n")
+                                                    filenew.write(" ")
+                                                    filenew.write("\n")
                                             else:
                                                 print("Saved!")
                         
@@ -411,10 +408,16 @@ def jobSearch(user, jobDeleted):
                                                 filenew.write("\n")
                                                 filenew.write('saved')        #status stored in here [i+1]
                                                 filenew.write("\n")
+                                                filenew.write(" ")
+                                                filenew.write("\n")
+                                                filenew.write(" ")
+                                                filenew.write("\n")
+                                                filenew.write(" ")
+                                                filenew.write("\n")
                                         elif (data_into_list[j-1] == user) and (data_into_list[j] == selAJob) and data_into_list[j+1] == 'applied': #new job to save
                                             print("Cannot save a job you posted or applied")
                                         else:
-                                            print(" ")
+                                            pass
                         
                         else:
                             print("Please select apply(a) or save(s) only.")
@@ -422,8 +425,8 @@ def jobSearch(user, jobDeleted):
                             
             break #out of search func
  
- #DELETE A POST
-        elif NewJobPost == "D" or "d":
+        #DELETE A POST
+        elif NewJobPost == "D" or NewJobPost == "d":
             print("delete a job that you posted")
             with open('jobfile.txt', 'r') as file:
                 print("All jobs currently in system:")
@@ -447,7 +450,7 @@ def jobSearch(user, jobDeleted):
             additionalOptions()
         else:
             print("\nPress (x) to quit\n")
-            break
+
 
 
 
