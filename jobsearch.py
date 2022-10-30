@@ -1,22 +1,29 @@
-def printJobDetail():
+def printJobDetail(user):
     with open('jobfile.txt', 'r') as file:
-            #jobList = file.readlines()
-            #print(jobList)
-            data = file.read()
-            data_into_list = data.split("\n")       #put value in txt into a list
-            #print(data_into_list)
-            for i in range(len(data_into_list)):    #search name of user in that list
-                if data_into_list[i] == user:
-                    print(data_into_list[i])
-                    print(data_into_list[i+1])
-                    print(data_into_list[i+2])
-                    print(data_into_list[i+3])
-                    print(data_into_list[i+4])
-                    print(data_into_list[i+5])
+        print("\nAll jobs currently in system:")
+        data = file.read()
+        data_into_list = data.split("\n")    #put value in txt into a list
+        for g in range(1,len(data_into_list),6):    #search name of user in that list
+            print("Job: " + data_into_list[g])
+        
+        print(data_into_list)
+
+    with open('jobfile_status.txt', 'r') as newfile:
+        print("\nJob(s) that you applied/saved in system:")
+        data = newfile.read()
+        data_into_list = data.split("\n")
+        for a in range(len(data_into_list)):    #search name of user in that list
+            if data_into_list[a] == user:
+                print("User: " + data_into_list[a])
+                print("Job title: " + data_into_list[a+1])
+                print("Status: " + data_into_list[a+2])
+                print("Date grad: " + data_into_list[a+3])
+                print("Date start: " + data_into_list[a+4])
+                print("Description: " + data_into_list[a+5])
 
 
 while True: #Keep going until a valid option is put
-    user = "toan"
+    user = "hays"
 
     NewJobPost =str(input("\nDo you want to post(p), delete(d) your post or search(s) job/interships: "))
 
@@ -59,23 +66,20 @@ while True: #Keep going until a valid option is put
         countJob = 0
         with open(r"jobfile.txt", 'r') as file:  #read each job line save in txt
             countJob = len(file.readlines())
-            print(countJob)
-            if countJob > 10:
+            #print(countJob)
+            if countJob > 60:
                 print ("All permitted jobs are created, please come back later")
         break
     
 
+
+
     elif NewJobPost == "S" or NewJobPost == "s":
+        printJobDetail(user)
 
         with open('jobfile.txt', 'r') as file:
-            print("All jobs currently in system:")
-            #jobList = file.readlines()
-            #print(jobList)
-            
             data = file.read()
-            data_into_list = data.split("\n")    #put value in txt into a list
-            print(data_into_list)
-            
+            data_into_list = data.split("\n")
             selAJob = str(input("Select the job you want by enter its title ('intership' for example): "))
             for i in range(len(data_into_list)):    #search name of user in that list
                 if data_into_list[i] == selAJob:
@@ -97,18 +101,11 @@ while True: #Keep going until a valid option is put
                                 #print(data_into_list)
                                 for j in range(len(data_into_list)):    
                                     #search "title of job" in that list
-                                    if (data_into_list[j-1] == user) and (data_into_list[j] == selAJob) and data_into_list[j+1] == 'applied':
+                                    if (data_into_list[j-1] == user) and (data_into_list[j] == selAJob) and (data_into_list[j+1] == 'applied'):
                                         print('You applied this job already')
                                         
                                     #if title is in the list (same as selAJob) and "status" is blank or 'saved'
-                                    elif (data_into_list[j] == selAJob) and (data_into_list[j+1] == ' ' or data_into_list[j+1] == 'saved'):
-                                        # print(data_into_list[j-1])
-                                        # print(data_into_list[j])
-                                        # print(data_into_list[i+1])
-                                        # print(data_into_list[i+2])
-                                        # print(data_into_list[i+3])
-                                        # print(data_into_list[i+4])
-                                        
+                                    if (data_into_list[j] == selAJob) and (data_into_list[j+1] == ' ' or data_into_list[j+1] == 'saved'):
                                         grad_date = str(input("Enter grad date (mm/dd/yyyy): "))
                                         start_date = str(input("Enter date start working (mm/dd/yyyy): "))
                                         paragraph = str(input("Enter paragraph answer why you would be a good fit for this job: "))
@@ -128,10 +125,9 @@ while True: #Keep going until a valid option is put
                                             filenew.write(paragraph)
                                             filenew.write("\n")
                                         
-
-                                    else:
-                                        print(' ')
                     
+
+
                     elif aOrS == 's':
                         if data_into_list[i-1] == user: #the user is the one posted
                             print('Cannot save for a job that you posted')
@@ -165,7 +161,7 @@ while True: #Keep going until a valid option is put
                                             data_into_list[j-1] == user
                                             filenew.write(user)             #[j-1]
                                             filenew.write("\n")
-                                            filenew.write(selAJob)             #[j]
+                                            filenew.write(selAJob)          #[j]
                                             filenew.write("\n")
                                             filenew.write('saved')        #status stored in here [i+1]
                                             filenew.write("\n")
@@ -182,6 +178,10 @@ while True: #Keep going until a valid option is put
 
 
 
+
+
+
+
     elif NewJobPost == "D" or NewJobPost == "d":
         print("delete a job that you posted")
         printJobDetail()
@@ -193,5 +193,3 @@ while True: #Keep going until a valid option is put
         break
     else:
         print("\nPress (x) to quit\n")
-        break
-
