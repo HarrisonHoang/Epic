@@ -313,8 +313,6 @@ def jobSearch(user):
         elif NewJobPost == "S" or NewJobPost == "s":
             with open('jobfile.txt', 'r') as file:
                 print("All jobs currently in system:")
-                #jobList = file.readlines()
-                #print(jobList)
                 data = file.read()
                 data_into_list = data.split("\n")    #put value in txt into a list
                 print(data_into_list)
@@ -345,13 +343,6 @@ def jobSearch(user):
                                             
                                         #if title is in the list (same as selAJob) and "status" is blank or 'saved'
                                         elif (data_into_list[j] == selAJob) and (data_into_list[j+1] == ' ' or data_into_list[j+1] == 'saved'):
-                                            # print(data_into_list[j-1])
-                                            # print(data_into_list[j])
-                                            # print(data_into_list[i+1])
-                                            # print(data_into_list[i+2])
-                                            # print(data_into_list[i+3])
-                                            # print(data_into_list[i+4])
-                                            
                                             grad_date = str(input("Enter grad date (mm/dd/yyyy): "))
                                             start_date = str(input("Enter date start working (mm/dd/yyyy): "))
                                             paragraph = str(input("Enter paragraph answer why you would be a good fit for this job: "))
@@ -421,14 +412,12 @@ def jobSearch(user):
                             
             break #out of search func
  
- #DELETE A POST
-        elif NewJobPost == "D" or "d":
+        #DELETE A POST
+        elif NewJobPost == "D" or NewJobPost == "d":
             jobDeleted = 0
             print("delete a job that you posted")
             with open('jobfile.txt', 'r') as file:
                 print("All jobs currently in system:")
-                #jobList = file.readlines()
-                #print(jobList)
                 data = file.read()
                 data_into_list = data.split("\n")    #put value in txt into a list
                 print(data_into_list)
@@ -447,7 +436,6 @@ def jobSearch(user):
             additionalOptions()
         else:
             print("\nPress (x) to quit\n")
-            break
 
 
 
