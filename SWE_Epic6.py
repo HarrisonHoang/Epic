@@ -5,6 +5,7 @@ import os
 user = "" 
 Request = {}
 friends = {}
+jobDeleted = 0
 
 
 #AFTER LOGIN = HOME PAGE
@@ -19,7 +20,7 @@ def additionalOptions():
                         "Press P to see pending friend requests: \n"
                         "Or, enter InCollege Important Links to view important InCollege links\n"))
     if addiOption == "J" or addiOption == "j":
-        jobSearch(user)
+        jobSearch(user, jobDeleted)
 
     elif addiOption == "V" or addiOption == "v":
         profile()
@@ -254,9 +255,8 @@ def network(user):
         return
 
 
-def jobSearch(user):
+def jobSearch(user, jobDeleted):
     while user: #Keep going until a valid option is put
-
         if (jobDeleted != 0): #notify if job applied for has been deleted
             with open("jobfile_status.txt", 'r') as file:
                 for j in range(len(data_into_list)):
@@ -313,6 +313,8 @@ def jobSearch(user):
         elif NewJobPost == "S" or NewJobPost == "s":
             with open('jobfile.txt', 'r') as file:
                 print("All jobs currently in system:")
+                #jobList = file.readlines()
+                #print(jobList)
                 data = file.read()
                 data_into_list = data.split("\n")    #put value in txt into a list
                 print(data_into_list)
@@ -343,6 +345,13 @@ def jobSearch(user):
                                             
                                         #if title is in the list (same as selAJob) and "status" is blank or 'saved'
                                         elif (data_into_list[j] == selAJob) and (data_into_list[j+1] == ' ' or data_into_list[j+1] == 'saved'):
+                                            # print(data_into_list[j-1])
+                                            # print(data_into_list[j])
+                                            # print(data_into_list[i+1])
+                                            # print(data_into_list[i+2])
+                                            # print(data_into_list[i+3])
+                                            # print(data_into_list[i+4])
+                                            
                                             grad_date = str(input("Enter grad date (mm/dd/yyyy): "))
                                             start_date = str(input("Enter date start working (mm/dd/yyyy): "))
                                             paragraph = str(input("Enter paragraph answer why you would be a good fit for this job: "))
@@ -361,8 +370,9 @@ def jobSearch(user):
                                                 filenew.write("\n")
                                                 filenew.write(paragraph)
                                                 filenew.write("\n")
+    
                                         else:
-                                            pass
+                                            print(' ')
                         
                         elif aOrS == 's':
                             if data_into_list[i-1] == user: #the user is the one posted
@@ -404,7 +414,7 @@ def jobSearch(user):
                                         elif (data_into_list[j-1] == user) and (data_into_list[j] == selAJob) and data_into_list[j+1] == 'applied': #new job to save
                                             print("Cannot save a job you posted or applied")
                                         else:
-                                            pass
+                                            print(" ")
                         
                         else:
                             print("Please select apply(a) or save(s) only.")
@@ -412,12 +422,13 @@ def jobSearch(user):
                             
             break #out of search func
  
-        #DELETE A POST
-        elif NewJobPost == "D" or NewJobPost == "d":
-            jobDeleted = 0
+ #DELETE A POST
+        elif NewJobPost == "D" or "d":
             print("delete a job that you posted")
             with open('jobfile.txt', 'r') as file:
                 print("All jobs currently in system:")
+                #jobList = file.readlines()
+                #print(jobList)
                 data = file.read()
                 data_into_list = data.split("\n")    #put value in txt into a list
                 print(data_into_list)
@@ -430,12 +441,13 @@ def jobSearch(user):
                                 print("Job has been deleted!")
                                 jobDeleted += 1            
             break
-        
+
         #EXIT AND RETURN TO GENERAL
         elif NewJobPost == "X" or NewJobPost == "x":
             additionalOptions()
         else:
             print("\nPress (x) to quit\n")
+            break
 
 
 
