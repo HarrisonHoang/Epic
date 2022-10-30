@@ -302,7 +302,7 @@ def jobSearch(user):
             break
 
         #SEARCH A JOB
-        elif NewJobPost == "S" or "s":
+        elif NewJobPost == "S" or NewJobPost == "s":
             with open('jobfile.txt', 'r') as file:
                 print("All jobs currently in system:")
                 #jobList = file.readlines()
@@ -336,7 +336,7 @@ def jobSearch(user):
                                             print('You applied this job already')
                                             
                                         #if title is in the list (same as selAJob) and "status" is blank or 'saved'
-                                        elif (data_into_list[j] == selAJob) and (data_into_list[j+1] == ' ' or 'saved'):
+                                        elif (data_into_list[j] == selAJob) and (data_into_list[j+1] == ' ' or data_into_list[j+1] == 'saved'):
                                             # print(data_into_list[j-1])
                                             # print(data_into_list[j])
                                             # print(data_into_list[i+1])
@@ -414,7 +414,7 @@ def jobSearch(user):
                             
             break #out of search func
         #DELETE A POST
-        elif NewJobPost == "D" or "d":
+        elif NewJobPost == "D" or NewJobPost == "d":
             print("delete a job that you posted")
             break
 
