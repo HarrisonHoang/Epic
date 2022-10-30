@@ -130,7 +130,7 @@ while True: #Keep going until a valid option is put
                                         
 
                                     else:
-                                        print(' ')
+                                        pass
                     
                     elif aOrS == 's':
                         if data_into_list[i-1] == user: #the user is the one posted
@@ -172,7 +172,7 @@ while True: #Keep going until a valid option is put
                                     elif (data_into_list[j-1] == user) and (data_into_list[j] == selAJob) and data_into_list[j+1] == 'applied': #new job to save
                                         print("Cannot save a job you posted or applied")
                                     else:
-                                        print(" ")
+                                        pass
                     
                     else:
                         print("Please select apply(a) or save(s) only.")
