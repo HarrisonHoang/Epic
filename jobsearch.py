@@ -20,7 +20,7 @@ while True: #Keep going until a valid option is put
 
     NewJobPost =str(input("\nDo you want to post(p), delete(d) your post or search(s) job/interships: "))
 
-    if NewJobPost == "P" or NewJobPost == "p":
+    if NewJobPost == "P" or NewJobPost == "p": 
         jobTitle = input("Job title:\n")
         description = input("Description:\n")
         employer = input("Employer:\n")
@@ -63,9 +63,9 @@ while True: #Keep going until a valid option is put
             if countJob > 10:
                 print ("All permitted jobs are created, please come back later")
         break
+    
 
-
-    elif NewJobPost == "S" or "s":
+    elif NewJobPost == "S" or NewJobPost == "s":
 
         with open('jobfile.txt', 'r') as file:
             print("All jobs currently in system:")
@@ -101,7 +101,7 @@ while True: #Keep going until a valid option is put
                                         print('You applied this job already')
                                         
                                     #if title is in the list (same as selAJob) and "status" is blank or 'saved'
-                                    elif (data_into_list[j] == selAJob) and (data_into_list[j+1] == ' ' or 'saved'):
+                                    elif (data_into_list[j] == selAJob) and (data_into_list[j+1] == ' ' or data_into_list[j+1] == 'saved'):
                                         # print(data_into_list[j-1])
                                         # print(data_into_list[j])
                                         # print(data_into_list[i+1])
@@ -182,7 +182,7 @@ while True: #Keep going until a valid option is put
 
 
 
-    elif NewJobPost == "D" or "d":
+    elif NewJobPost == "D" or NewJobPost == "d":
         print("delete a job that you posted")
         printJobDetail()
         break
