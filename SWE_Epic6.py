@@ -256,6 +256,14 @@ def network(user):
 
 def jobSearch(user):
     while user: #Keep going until a valid option is put
+
+        if (jobDeleted != 0): #notify if job applied for has been deleted
+            with open("jobfile_status.txt", 'r') as file:
+                for j in range(len(data_into_list)):
+                    if data_into_list[j+1] == 'applied':
+                        print("A job(s) that you applied for has been deleted")
+                        jobDeleted = 0
+
         NewJobPost =str(input("\nDo you want to post(p), delete(d) your post or search(s) job/interships: "))
         #POST A JOB
         if NewJobPost == "P" or NewJobPost == "p":
@@ -413,11 +421,28 @@ def jobSearch(user):
                             continue
                             
             break #out of search func
-        #DELETE A POST
-        elif NewJobPost == "D" or NewJobPost == "d":
+ 
+ #DELETE A POST
+        elif NewJobPost == "D" or "d":
+            jobDeleted = 0
             print("delete a job that you posted")
+            with open('jobfile.txt', 'r') as file:
+                print("All jobs currently in system:")
+                #jobList = file.readlines()
+                #print(jobList)
+                data = file.read()
+                data_into_list = data.split("\n")    #put value in txt into a list
+                print(data_into_list)
+                selAJob = str(input("Select the job you want to delete by entering its title: ")) #search in job list
+                for i in range(len(data_into_list)):    #search name of user in that list
+                    if data_into_list[i] == selAJob:
+                        with open('jobfile.txt','w') as file:
+                            if data_into_list[i].strip("\n") != selAJob : 
+                                file.write(data_into_list[i])
+                                print("Job has been deleted!")
+                                jobDeleted += 1            
             break
-
+        
         #EXIT AND RETURN TO GENERAL
         elif NewJobPost == "X" or NewJobPost == "x":
             additionalOptions()
