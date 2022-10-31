@@ -363,6 +363,7 @@ def test_printJobDetail():
 #Test jobSearch
 def test_jobSearch():
     user ="sophiehos"
+    data = file.read()
     data_into_list = data.split("\n") 
     NewJobPost = "P"
     assert NewJobPost == "p" or "P" or "s" or "S" or "d" or "D" or "x" or "X"
