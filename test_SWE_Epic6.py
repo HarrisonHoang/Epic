@@ -377,8 +377,8 @@ def test_jobSearch():
     assert salary == "500k"
     jobDeleted="0"
     assert jobDeleted=="0"
-    data_into_list="6"
-    assert data_into_list=="6"
+    data_into_list="selAJob"
+    assert data_into_list=="selAJob"
     while user: #Keep going until a valid option is put
         if (jobDeleted != 0): #notify if job applied for has been deleted
             with open("jobfile_status.txt", 'r') as file:
