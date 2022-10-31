@@ -337,6 +337,7 @@ def test_display():
 
 #Test printJobDetail
 def test_printJobDetail():
+    user="sophiehos"
     with open('jobfile.txt', 'r') as file:
         data = file.read()
         data_into_list = data.split("\n")    #put value in txt into a list
@@ -362,7 +363,6 @@ def test_printJobDetail():
 #Test jobSearch
 def test_jobSearch():
     user ="sophiehos"
-    file="jobfile_status.txt"
     NewJobPost = "P"
     assert NewJobPost == "p" or "P" or "s" or "S" or "d" or "D" or "x" or "X"
     jobTitle = "boss"
