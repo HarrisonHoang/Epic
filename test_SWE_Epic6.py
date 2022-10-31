@@ -337,7 +337,7 @@ def test_display():
 
 #Test printJobDetail
 def test_printJobDetail():
-     with open('jobfile.txt', 'r') as file:
+    with open('jobfile.txt', 'r') as file:
         data = file.read()
         data_into_list = data.split("\n")    #put value in txt into a list
         print(data_into_list)
@@ -360,8 +360,10 @@ def test_printJobDetail():
                 print("Description: " + data_into_list[a+5])
 
 #Test jobSearch
-def test_def jobSearch():
-    NewJobPost == "P"
+def test_jobSearch():
+    user ="sophiehos"
+    file="jobfile_status.txt"
+    NewJobPost = "P"
     assert NewJobPost == "p" or "P" or "s" or "S" or "d" or "D" or "x" or "X"
     jobTitle = "boss"
     assert jobTitle == "boss"
@@ -373,5 +375,200 @@ def test_def jobSearch():
     assert location == "ca"
     salary = "500k"
     assert salary == "500k"
-          
-# pytest test_SWE_Epic6.py -v
+    jobDeleted="0"
+    assert jobDeleted=="0"
+    while user: #Keep going until a valid option is put
+        if (jobDeleted != 0): #notify if job applied for has been deleted
+            with open("jobfile_status.txt", 'r') as file:
+                for j in range(len(data_into_list)):
+                    if data_into_list[j+1] == 'applied':
+                        print("A job(s) that you applied for has been deleted")
+                        jobDeleted = 0
+
+        NewJobPost =str(input("\nDo you want to post(p), delete(d) your post or search(s) job/interships: "))
+        #POST A JOB
+        if NewJobPost == "P" or NewJobPost == "p":
+            jobTitle = input("Job title:\n")
+            description = input("Description:\n")
+            employer = input("Employer:\n")
+            location = input("Location\n")
+            salary = input("Salary:\n")
+            #save data into jobfile.txt
+            with open("jobfile.txt", "a") as file:
+                file.write(user)            #[i-1]
+                file.write("\n")
+                file.write(jobTitle)        #[i] search by jobTitle
+                file.write("\n")
+                file.write(description)     #[i+1]
+                file.write("\n")
+                file.write(employer)        #[i+2]
+                file.write("\n")
+                file.write(location)        #[i+3]
+                file.write("\n")
+                file.write(salary)          #[i+4]
+                file.write("\n")
+            #Save status of data into jobfile_status.txt at the same time
+            with open('jobfile_status.txt', 'a') as filenew:  
+                filenew.write(' ')      #use to save user who want to apply or save
+                filenew.write("\n")
+                filenew.write(jobTitle)      #title [j]
+                filenew.write("\n")
+                filenew.write(' ')      #STATUS [j+1]
+                filenew.write("\n")
+                filenew.write(' ')      #grad_date [j+2]
+                filenew.write("\n")
+                filenew.write(' ')      #start_date [j+3]
+                filenew.write("\n")
+                filenew.write(' ')      #paragraph [j+4]
+                filenew.write("\n")
+                
+            countJob = 0
+            with open(r"jobfile.txt", 'r') as file:  #read each job line save in txt
+                countJob = len(file.readlines())
+                #print(countJob)
+            if countJob > 60:   #6 lines per acc, so 10 accs have 60 lines
+                print ("All permitted jobs are created, please come back later")
+            break
+
+        #SEARCH A JOB
+        elif NewJobPost == "S" or NewJobPost == "s":
+            printJobDetail(user)
+
+            with open('jobfile.txt', 'r') as file:
+                data = file.read()
+                data_into_list = data.split("\n")    #put value in txt into a list
+                
+                selAJob = str(input("Select the job you want by enter its title ('intership' for example): "))
+                for i in range(len(data_into_list)):    #search name of user in that list
+                    if data_into_list[i] == selAJob:
+                        print("Title: " + data_into_list[i])
+                        print("Description: " + data_into_list[i+1])
+                        print("Employer: " + data_into_list[i+2])
+                        print("Location: " + data_into_list[i+3])
+                        print("Salary: " + data_into_list[i+4])
+
+                        aOrS = str(input("Do you want to apply now (a) or (s) save/unsave for later? "))
+                        if aOrS == 'a':
+                            if data_into_list[i-1] == user: #the user is the one posted
+                                print('Cannot apply for a job that you posted')
+                            else:
+                                with open("jobfile_status.txt", 'r+') as newfile:
+                                    data = newfile.read()
+                                    #put value in txt into a list
+                                    data_into_list = data.split("\n") 
+                                    #print(data_into_list)
+                                    for j in range(len(data_into_list)):    
+                                        #search "title of job" in that list
+                                        if (data_into_list[j-1] == user) and (data_into_list[j] == selAJob) and data_into_list[j+1] == 'applied':
+                                            print('You applied this job already')
+                                            
+                                        #if title is in the list (same as selAJob) and "status" is blank or 'saved'
+                                        elif (data_into_list[j] == selAJob) and (data_into_list[j+1] == ' ' or data_into_list[j+1] == 'saved'):
+                                            grad_date = str(input("Enter grad date (mm/dd/yyyy): "))
+                                            start_date = str(input("Enter date start working (mm/dd/yyyy): "))
+                                            paragraph = str(input("Enter paragraph answer why you would be a good fit for this job: "))
+                                            
+                                            with open('jobfile_status.txt', 'a') as filenew:   #read/write to "apply or save jobfile"
+                                                data_into_list[j-1] == user
+                                                filenew.write(user)             #[j-1]
+                                                filenew.write("\n")
+                                                filenew.write(selAJob)             #[j]
+                                                filenew.write("\n")
+                                                filenew.write('applied')        #status stored in here [i+1]
+                                                filenew.write("\n")
+                                                filenew.write(grad_date)
+                                                filenew.write("\n")
+                                                filenew.write(start_date)
+                                                filenew.write("\n")
+                                                filenew.write(paragraph)
+                                                filenew.write("\n")
+    
+                                        else:
+                                            pass
+                        
+                        elif aOrS == 's':
+                            if data_into_list[i-1] == user: #the user is the one posted
+                                print('Cannot save for a job that you posted')
+                            else:
+                                with open("jobfile_status.txt", 'r+') as newfile:
+                                    data = newfile.read()
+                                    #put value in txt into a list
+                                    data_into_list = data.split("\n") 
+                                    #print(data_into_list)
+                                    for j in range(len(data_into_list)):    
+                                        #search "title of job" in that list
+                                        if (data_into_list[j-1] == user) and (data_into_list[j] == selAJob) and data_into_list[j+1] == 'saved':
+                                            sORu = str(input("You saved this post already. Do you want to unsave (u) or keep it (any key): "))
+                                            if sORu == 'u': 
+                                                print("change status to unsaved")
+                                                with open('jobfile_status.txt', 'a') as filenew:   #read/write to "apply or save jobfile"
+                                                    data_into_list[j-1] == user
+                                                    filenew.write(user)             #[j-1]
+                                                    filenew.write("\n")
+                                                    filenew.write(selAJob)             #[j]
+                                                    filenew.write("\n")
+                                                    filenew.write(' ')        #status stored in here [i+1]
+                                                    filenew.write("\n")
+                                                    filenew.write(" ")
+                                                    filenew.write("\n")
+                                                    filenew.write(" ")
+                                                    filenew.write("\n")
+                                                    filenew.write(" ")
+                                                    filenew.write("\n")
+                                            else:
+                                                print("Saved!")
+                        
+                                        #if title is in the list (same as selAJob) and "status" is blank or 'saved'
+                                        elif (data_into_list[j] == selAJob) and (data_into_list[j+1] == ' '):
+                                            print("change status to saved")
+                                            with open('jobfile_status.txt', 'a') as filenew:   #read/write to "apply or save jobfile"
+                                                data_into_list[j-1] == user
+                                                filenew.write(user)             #[j-1]
+                                                filenew.write("\n")
+                                                filenew.write(selAJob)             #[j]
+                                                filenew.write("\n")
+                                                filenew.write('saved')        #status stored in here [i+1]
+                                                filenew.write("\n")
+                                                filenew.write(" ")
+                                                filenew.write("\n")
+                                                filenew.write(" ")
+                                                filenew.write("\n")
+                                                filenew.write(" ")
+                                                filenew.write("\n")
+                                        elif (data_into_list[j-1] == user) and (data_into_list[j] == selAJob) and data_into_list[j+1] == 'applied': #new job to save
+                                            print("Cannot save a job you posted or applied")
+                                        else:
+                                            pass
+                        
+                        else:
+                            print("Please select apply(a) or save(s) only.")
+                            continue
+                            
+            break #out of search func
+ 
+        #DELETE A POST
+        elif NewJobPost == "D" or NewJobPost == "d":
+            print("delete a job that you posted")
+            with open('jobfile.txt', 'r') as file:
+                print("All jobs currently in system:")
+                #jobList = file.readlines()
+                #print(jobList)
+                data = file.read()
+                data_into_list = data.split("\n")    #put value in txt into a list
+                print(data_into_list)
+                selAJob = str(input("Select the job you want to delete by entering its title: ")) #search in job list
+                for i in range(len(data_into_list)):    #search name of user in that list
+                    if data_into_list[i] == selAJob:
+                        with open('jobfile.txt','w') as file:
+                            if data_into_list[i].strip("\n") != selAJob : 
+                                file.write(data_into_list[i])
+                                print("Job has been deleted!")
+                                jobDeleted += 1            
+            break
+
+        #EXIT AND RETURN TO GENERAL
+        elif NewJobPost == "X" or NewJobPost == "x":
+            additionalOptions()
+        else:
+            print("\nPress (x) to quit\n")
+
