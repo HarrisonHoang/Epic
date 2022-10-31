@@ -363,7 +363,7 @@ def test_printJobDetail():
 #Test jobSearch
 def test_jobSearch():
     user ="sophiehos"
-    j=0
+    data_into_list = data.split("\n") 
     NewJobPost = "P"
     assert NewJobPost == "p" or "P" or "s" or "S" or "d" or "D" or "x" or "X"
     jobTitle = "boss"
@@ -378,8 +378,6 @@ def test_jobSearch():
     assert salary == "500k"
     jobDeleted="0"
     assert jobDeleted=="0"
-    data_into_list=[j+7]
-    assert data_into_list==[j+7]
     while user: #Keep going until a valid option is put
         if (jobDeleted != 0): #notify if job applied for has been deleted
             with open("jobfile_status.txt", 'r') as file:
