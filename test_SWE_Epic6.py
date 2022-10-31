@@ -363,6 +363,7 @@ def test_printJobDetail():
 #Test jobSearch
 def test_jobSearch():
     user ="sophiehos"
+    with open("jobfile_status.txt", 'r') as file:
     data = file.read()
     data_into_list = data.split("\n") 
     NewJobPost = "P"
