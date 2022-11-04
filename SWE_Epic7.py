@@ -3,6 +3,7 @@ import os
 
 #Global Variables
 user = "" 
+userTier = ""
 Request = {}
 friends = {}
 jobDeleted = 0
@@ -586,8 +587,8 @@ def requestSent():
                 RequestSent.append(requestName)
                 return
     
-
-def messages(): #messages function
+#messages function *added in Epic #7*
+def messages(): 
     print("Select the person you would like to message:\n")
 
 
@@ -654,7 +655,7 @@ def CreateAcc():
             file.write(" ")
             file.write(major)
             file.write(" ")
-            file.write(tier)
+            file.write(tier)    #Save tier info to user file *added in Epic #7*
             file.write("\n")
 
             countAcc = 0
@@ -693,6 +694,7 @@ def CreateAcc():
 #LOGIN WITH AN ACCOUNT
 def LogIn():
     global user
+    global userTier
     while True:
         username = str(input("\nPlease enter your username: "))
         password = str(input("\nPlease enter your password: "))
@@ -706,6 +708,7 @@ def LogIn():
             if username==savedLogin[0] and password==savedLogin[1]:
                 print("\n*** You have successfully logged in! ***")
                 user = username
+                userTier = savedLogin[6]    #Save user's tier to a global variable when they log in *added in Epic #7*
                 additionalOptions()
                 return
 
