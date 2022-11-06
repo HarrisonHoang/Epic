@@ -1,6 +1,6 @@
-# pytest test_SWE_Epic6.py -v
-import SWE_Epic6
-from SWE_Epic6 import Request
+# pytest test_SWE_Epic7.py -v
+import SWE_Epic7
+from SWE_Epic7 import Request
      
 #Test account login- make sure user states whether they have an InCollege account
 def test_LogIn():
@@ -94,7 +94,7 @@ def test_UsefulLinks():
 def test_ImportantLinks():
     importantLinksInput = "Privacy Policy"
     assert importantLinksInput == "Privacy Policy"
-    SWE_Epic6.GuestControls()
+    SWE_Epic7.GuestControls()
     print("successfully go to GuestControl() when it print last line: You are not sighe")
     importantLinksInput = "About"
     assert importantLinksInput == "About"
@@ -337,7 +337,30 @@ def test_display():
 
 #Test printJobDetail
 def test_printJobDetail():
-    user="sophiehos"
+    user="toan"
+    with open('jobfile.txt', 'r') as file:
+        data = file.read()
+        data_into_list = data.split("\n")    #put value in txt into a list
+        print(data_into_list)
+        print("\nAll jobs currently in system:")
+        for g in range(1,len(data_into_list),6):    #search name of user in that list
+            print("Job: " + data_into_list[g])
+        
+
+    with open('jobfile_status.txt', 'r') as newfile:
+        print("\nJob(s) that you applied/saved in system:")
+        data = newfile.read()
+        data_into_list = data.split("\n")
+        for a in range(len(data_into_list)):    #search name of user in that list
+            if data_into_list[a] == user:
+                print("User: " + data_into_list[a])
+                print("Job title: " + data_into_list[a+1])
+                print("Status: " + data_into_list[a+2])
+                print("Date grad: " + data_into_list[a+3])
+                print("Date start: " + data_into_list[a+4])
+                print("Description: " + data_into_list[a+5])
+
+    user="hays"
     with open('jobfile.txt', 'r') as file:
         data = file.read()
         data_into_list = data.split("\n")    #put value in txt into a list
@@ -378,3 +401,24 @@ def test_jobSearch():
     jobDeleted="0"
     assert jobDeleted=="0"
 
+#Test sendMessages
+def test_sendMessages():
+    user = "Caitlin"
+    print("\nWho would you like to send a message to?")
+    toUser = "Abby"
+    print("Accepted")
+
+    user = "Caitlin"
+    print("\nWho would you like to send a message to?")
+    toUser = "Tester1"
+    print("Pending")
+
+    user = "Abby"
+    print("\nWho would you like to send a message to?")
+    toUser = "Caitlin"
+    print("Accepted")
+
+    user = "Caitlin"
+    print("\nWho would you like to send a message to?")
+    toUser = "Tester1"
+    print("Pending")
