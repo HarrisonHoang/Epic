@@ -1,0 +1,28 @@
+[
+    {
+        "name": "Caitlin",
+        "friends": [
+            {
+                "name": "Abby",
+                "status": "Accepted"
+            },
+            {
+                "name": "Tester1",
+                "status": "pending"
+            }
+        ]
+    },
+    {
+        "name": "Abby",
+        "friends": [
+            {
+                "name": "Caitlin",
+                "status": "Accepted"
+            },
+            {
+                "name": "Tester1",
+                "status": "pending"
+            }
+        ]
+    }
+]

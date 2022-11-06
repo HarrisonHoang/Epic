@@ -1,5 +1,6 @@
 import csv
 import os
+import json
 
 #Global Variables
 user = "" 
@@ -7,6 +8,9 @@ userTier = ""
 Request = {}
 friends = {}
 jobDeleted = 0
+allUsers = []
+with open('friends.json', 'r') as friends_json:
+    friends = json.load(friends_json)
 
 
 #AFTER LOGIN = HOME PAGE
@@ -57,7 +61,7 @@ def additionalOptions():
     elif addiOption == "P" or addiOption == "p":
         friendRequest()
     elif addiOption == "M" or addiOption == "m":
-        messages()
+        Messages()
     elif addiOption == "InCollege Important Links":
         ImportantLinks()
     else:
@@ -213,7 +217,7 @@ def profile():
 
 def display(user):
     search = str(input("Enter a name of your friend to view their profile"))
-    result = friends[user].count(search)
+    result = friends["name"].count(search)
     if result > 0:
         with open('profile.csv', 'r') as file:
             csv_reader = csv.DictReader(file)
@@ -238,6 +242,9 @@ def network(user):
     temp2 = []
     friend = str(input("How would you like your new friend's name stored in your friend's list?"))
     temp2.append(friend)#list containing friend input
+    #Changed to make friends a json file *changed during epic 7*
+
+
     friends[user].append(temp2)#appends to user friend list in dictionary  
     temp = []
     temp.append(user)
@@ -249,6 +256,7 @@ def network(user):
         return
     friendRemoval = str(input("Would you like to remove a friend?"))
     if friendRemoval == "yes":
+        #Change!!!!!!
         remove = str(input("Who would you like to remove?"))
         friends[user].remove(remove)
         friends[remove].remove(user)
@@ -498,7 +506,7 @@ def SearchPeople2():
                 y = savedLogin[3]
                 z = x + ' ' + y
                 userFound.append(z)
-                sendRequest = str(input("Would you like to send them a friend request?"))
+                sendRequest = str(input("Would you like to send them a request?"))
                 if sendRequest == "yes":
                     requestSent()
                     return
@@ -587,9 +595,42 @@ def requestSent():
                 RequestSent.append(requestName)
                 return
     
-#messages function *added in Epic #7*
-def messages(): 
-    print("Select the person you would like to message:\n")
+#messages functions *added in Epic #7*
+def sendMessages():
+    #Messages file format!!
+    #ToUser FromUser Message Read(bool)
+    global allUsers
+    toUser = str(input("Who would you like to send a message to?"))
+    #If user is standard, check if toUser is in their friends list
+
+
+
+    #if user is plus, do this:
+    for user in allUsers:
+        if toUser == user:
+            message = str(input("What is the message?"))
+            #Add message to txt file
+    print("User was not found!")
+
+
+def Messages(): 
+    if userTier == "Standard":
+        sendMessages()
+    else:
+        global allUsers
+
+        while True:
+            viewStudentsList = str(input("Would you like to view all students (y/n)"))
+            if viewStudentsList == "y" or viewStudentsList == "Y":
+                print("print all students")
+                sendMessages()
+                break
+            if viewStudentsList == "n" or viewStudentsList == "N":
+                sendMessages()
+                break
+            else:
+                print("Invalid input, please try again.")
+
 
 
 #Pre-login screen
@@ -639,7 +680,10 @@ def CreateAcc():
             major = str(input("\nPlease enter your major\n"))
             tier = str(input("\nDo you want a Standard account (free) or Plus account ($10/month)")) #added tier epic7
             if(tier == "Plus" or tier == "plus"):
+                tier = "Plus"
                 print("Awesome! You will be billed $10/month")
+            elif tier == "Standard" or tier == "standard":
+                tier = "Standard"
 
 
             file = open("userfile.txt", "a")
