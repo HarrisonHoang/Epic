@@ -404,21 +404,125 @@ def test_jobSearch():
 #Test sendMessages
 def test_sendMessages():
     user = "Caitlin"
+    assert user == "Caitlin"
+    userTier = "Standard"
+    assert userTier == "Standard"
     print("\nWho would you like to send a message to?")
     toUser = "Abby"
-    print("Accepted")
+    assert toUser == "Abby"
+    print(toUser)
+    #If user is standard, check if toUser is in their friends list
+    if userTier == "Standard":
+        if toUser == "Abby":
+            print("What is the message?")
+            message = "Hi, I want to be friend with you"
+            assert message == "Hi, I want to be friend with you"
+            print(message)
+            #messageCount + 1
+            with open('messagefile.txt', 'a') as file:
+                file.write(user)
+                file.write(" to: ")
+                file.write(toUser)
+                file.write(" Message: ")
+                file.write(message)
+                file.write("\n")
+        else:
+            print("User is not your friend!")
+        
 
-    user = "Caitlin"
-    print("\nWho would you like to send a message to?")
-    toUser = "Tester1"
-    print("Pending")
+    #if user is plus, do this:
+    else:
+        if toUser == "someoneelse":
+            print("What is the message?")
+            message = "Hello, add me as your new friend."
+            assert message == "Hello, add me as your new friend."
+            print(message)
+            #messageCount + 1
+            with open('messagefile.txt', 'a') as file:
+                file.write("From: ")
+                file.write(user)
+                file.write(" to: ")
+                file.write(toUser)
+                file.write(" Message: ")
+                file.write(message)
+                file.write("\n")
+        else: 
+            print("User was not found!")
 
     user = "Abby"
-    print("\nWho would you like to send a message to?")
-    toUser = "Caitlin"
-    print("Accepted")
-
-    user = "Caitlin"
+    assert user == "Abby"
+    userTier = "plus"
+    assert userTier == "plus"
     print("\nWho would you like to send a message to?")
     toUser = "Tester1"
-    print("Pending")
+    assert toUser == "Tester1"
+    print(toUser)
+    #If user is standard, check if toUser is in their friends list
+    if userTier == "Standard":
+        if toUser == "someoneelse":
+            print("What is the message?")
+            message = "Hi, I want to be friend with you"
+            assert message == "Hi, I want to be friend with you"
+            print(message)
+            #messageCount + 1
+            with open('messagefile.txt', 'a') as file:
+                file.write(user)
+                file.write(" to: ")
+                file.write(toUser)
+                file.write(" Message: ")
+                file.write(message)
+                file.write("\n")
+        else:
+            print("User is not your friend!")
+        
+
+    #if user is plus, do this:
+    else:
+        if toUser == "Tester1":
+            print("What is the message?")
+            message = "Hello, add me as your new friend."
+            assert message == "Hello, add me as your new friend."
+            print(message)
+            #messageCount + 1
+            with open('messagefile.txt', 'a') as file:
+                file.write("From: ")
+                file.write(user)
+                file.write(" to: ")
+                file.write(toUser)
+                file.write(" Message: ")
+                file.write(message)
+                file.write("\n")
+        else: 
+            print("User was not found!")
+
+def test_Messages():
+    messageCount = 3
+    user = "Caitlin"
+    assert user == "Caitlin"
+    if(messageCount > 0):
+        with open('messagefile.txt', 'r') as file:
+            for line in file: 
+                for x in line: #check if user is in messagefile 
+                    if user in x: #if user in message file print message
+                        print("You have a message:\n")
+                        print(line)
+                        assert line == "Hi, I want to be friend with you" 
+                        print("\n")
+    
+    userTier = "Standard"
+    assert userTier == "Standard"
+    if userTier == "Standard":
+        test_sendMessages()
+    else:
+        global allUsers
+        while True:
+            viewStudentsList = str(input("Would you like to view all students (y/n)"))
+            if viewStudentsList == "y" or viewStudentsList == "Y":
+                print(allUsers)
+                test_sendMessages()
+                break
+            if viewStudentsList == "n" or viewStudentsList == "N":
+                test_sendMessages()
+                break
+            else:
+                print("Invalid input, please try again.")
