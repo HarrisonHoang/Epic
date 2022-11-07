@@ -8,9 +8,10 @@ userTier = ""
 Request = {}
 friends = {}
 jobDeleted = 0
+messageCount = 0
 allUsers = []
-with open('friends.json', 'r') as friends_json:
-    friends = json.load(friends_json)
+#with open('friends.json', 'r') as friends_json:
+#   friends = json.load(friends_json)
 
 
 #AFTER LOGIN = HOME PAGE
@@ -23,7 +24,7 @@ def additionalOptions():
                         "Press S to learn a new skill:\n"
                         "Press N to see your network:\n"
                         "Press P to see pending friend requests: \n"
-                        "Press M to send a message"
+                        "Press M to send a message\n"
                         "Or, enter InCollege Important Links to view important InCollege links\n"))
     if addiOption == "J" or addiOption == "j":
         jobSearch(user, jobDeleted)
@@ -600,20 +601,53 @@ def sendMessages():
     #Messages file format!!
     #ToUser FromUser Message Read(bool)
     global allUsers
+
     toUser = str(input("Who would you like to send a message to?"))
+    
     #If user is standard, check if toUser is in their friends list
-
-
+    if userTier == "Standard":
+        if toUser in friends:
+            message = str(input("What is the message?"))
+            messageCount + 1
+            with open('messagefile.txt', 'a') as file:
+                file.write(user)
+                file.write(" to: ")
+                file.write(toUser)
+                file.write(" Message: ")
+                file.write(message)
+                file.write("\n")
+        else:
+            print("User is not your friend!")
+        
 
     #if user is plus, do this:
-    for user in allUsers:
-        if toUser == user:
+    else:
+        if toUser in allUsers:
             message = str(input("What is the message?"))
-            #Add message to txt file
-    print("User was not found!")
+            messageCount + 1
+            with open('messagefile.txt', 'a') as file:
+                file.write("From: ")
+                file.write(user)
+                file.write(" to: ")
+                file.write(toUser)
+                file.write(" Message: ")
+                file.write(message)
+                file.write("\n")
+        else: 
+            print("User was not found!")
 
 
-def Messages(): 
+def Messages():
+      
+    if(messageCount > 0):
+        with open('messagefile.txt', 'r') as file:
+            for line in file: 
+                for x in line: #check if user is in messagefile 
+                    if user in x: #if user in message file print message
+                        print("You have a message:\n")
+                        print(line)
+                        print("\n")
+
     if userTier == "Standard":
         sendMessages()
     else:
@@ -622,7 +656,7 @@ def Messages():
         while True:
             viewStudentsList = str(input("Would you like to view all students (y/n)"))
             if viewStudentsList == "y" or viewStudentsList == "Y":
-                print("print all students")
+                print(allUsers)
                 sendMessages()
                 break
             if viewStudentsList == "n" or viewStudentsList == "N":
@@ -630,6 +664,8 @@ def Messages():
                 break
             else:
                 print("Invalid input, please try again.")
+    
+    additionalOptions()
 
 
 
@@ -703,7 +739,7 @@ def CreateAcc():
             file.write("\n")
 
             countAcc = 0
-            with open(r"userfile.txt", 'r') as file:  #read each account line save in txt
+            with open("userfile.txt", 'r') as file:  #read each account line save in txt
                 countAcc = len(file.readlines())
                 #print(countAcc)
 
@@ -727,8 +763,11 @@ def CreateAcc():
 
             settingsFile.close()
 
+            allUsers.append(newUser)
+
             print('\nCongrats! You are successfully sign up.' 
                     '\nYou can login now...')
+
 
             #call login function
             LogIn()
