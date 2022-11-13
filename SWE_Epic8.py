@@ -35,9 +35,12 @@ def readNotifications():
     for line in open("notifications.txt", "r").readlines():
         notif = line.split()
         if notif[0] == user:
+            notifMessage = ""
             notifications += 1
-            for notif
-            print(notif[1])
+            for x in range(len(notif)):
+                if x == 0: continue
+                notifMessage += notif[x] + " "
+            print(str(notifications) + ". " + notifMessage)
             #Remove notification after being printed
     if notifications == 0:
         print("You have no new notifications")
@@ -54,7 +57,7 @@ def additionalOptions():
                         "Press N to see your network:\n"
                         "Press P to see pending friend requests: \n"
                         "Press M to send a message\n"
-                        "Enter Notificaiton to check notifications\n" 
+                        "Enter Notificaitons to check notifications\n" 
                         "Or, enter InCollege Important Links to view important InCollege links\n"))
     if addiOption == "J" or addiOption == "j":
         jobSearch(user, jobDeleted)
