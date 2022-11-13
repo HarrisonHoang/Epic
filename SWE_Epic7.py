@@ -10,9 +10,10 @@ friends = {}
 jobDeleted = 0
 messageCount = 0
 allUsers = []
+
+
 #with open('friends.json', 'r') as friends_json:
 #   friends = json.load(friends_json)
-
 
 #AFTER LOGIN = HOME PAGE
 #created a function in order to call it again when asked to return to the main screen
@@ -763,7 +764,11 @@ def CreateAcc():
 
             settingsFile.close()
 
-            allUsers.append(newUser)
+
+            allUsersFile = open("allUsers.txt", "a")
+            allUsersFile.write(newUser)
+            allUsersFile.write("\n")
+            #allUsers.append(newUser)
 
             print('\nCongrats! You are successfully sign up.' 
                     '\nYou can login now...')

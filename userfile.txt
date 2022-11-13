@@ -1,3 +1,4 @@
 toan Toan1234* Toan Ho USF CE
-haysc Password1! Caitlin Hays USF CS Standard
-tester1 Password1! Test Person USF CS Plus
+test2 Password1! Tester two USF CS Standard
+rockyBull Password1! Rocky Bull USF marketing Plus
+haysc P@ssword1 Caitlin Hays USF CS Standard

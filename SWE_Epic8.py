@@ -10,8 +10,29 @@ friends = {}
 jobDeleted = 0
 messageCount = 0
 allUsers = []
+for line in open("allUsers.txt", "r").readlines():
+    allUsers.append(line.replace("\n", ""))
+
 #with open('friends.json', 'r') as friends_json:
 #   friends = json.load(friends_json)
+
+#Make notification if the user is in the list of all users
+def notification(forUser, notifMessage):
+    if forUser in allUsers:
+        notificationsFile = open("notifications.txt", "r")
+        notificationsFile.write(forUser)
+        notificationsFile.write(" ")
+        notificationsFile.write(notifMessage)
+        notificationsFile.write("\n")
+        notificationsFile.close()
+
+#prints notfications
+def readNotifications():
+    for line in open("notifications.txt", "r").readlines():
+        notif = line.split()
+        if notif[0] == user:
+            print(notif[1])
+            #Remove notification after being printed
 
 
 #AFTER LOGIN = HOME PAGE
@@ -638,7 +659,7 @@ def sendMessages():
 
 
 def Messages():
-      
+    global user
     if(messageCount > 0):
         with open('messagefile.txt', 'r') as file:
             for line in file: 
@@ -763,6 +784,10 @@ def CreateAcc():
 
             settingsFile.close()
 
+            allUsersFile = open("allUsers.txt", "a")
+            allUsersFile.write(newUser)
+            allUsersFile.write("\n")
+            allUsersFile.close()
             allUsers.append(newUser)
 
             print('\nCongrats! You are successfully sign up.' 
