@@ -13,8 +13,11 @@ allUsers = []
 for line in open("allUsers.txt", "r").readlines():
     allUsers.append(line.replace("\n", ""))
 
+
+
 #with open('friends.json', 'r') as friends_json:
 #   friends = json.load(friends_json)
+
 
 #Make notification if the user is in the list of all users
 def notification(forUser, notifMessage):
@@ -28,11 +31,15 @@ def notification(forUser, notifMessage):
 
 #prints notfications
 def readNotifications():
+    notifications = 0
     for line in open("notifications.txt", "r").readlines():
         notif = line.split()
         if notif[0] == user:
+            notifications += 1
             print(notif[1])
             #Remove notification after being printed
+    if notifications == 0:
+        print("You have no new notifications")
 
 
 #AFTER LOGIN = HOME PAGE
@@ -46,6 +53,7 @@ def additionalOptions():
                         "Press N to see your network:\n"
                         "Press P to see pending friend requests: \n"
                         "Press M to send a message\n"
+                        "Enter Notificaiton to check notifications\n" 
                         "Or, enter InCollege Important Links to view important InCollege links\n"))
     if addiOption == "J" or addiOption == "j":
         jobSearch(user, jobDeleted)
@@ -84,6 +92,8 @@ def additionalOptions():
         friendRequest()
     elif addiOption == "M" or addiOption == "m":
         Messages()
+    elif addiOption == "Notifications" or addiOption == "notifications":
+        readNotifications()
     elif addiOption == "InCollege Important Links":
         ImportantLinks()
     else:
@@ -92,6 +102,8 @@ def additionalOptions():
 # Edit: additionalOption(), profile()
 def profile():
     while user: #while user has a value, aka the user is logged in
+        #check if user has a profile, if not add a notification to create a profile *Added in epic 8*
+
         option = str(input("Do you want to create(c), view(v), edit(e) your profile? "))
 
         if option == 'c':
@@ -631,12 +643,14 @@ def sendMessages():
             message = str(input("What is the message?"))
             messageCount + 1
             with open('messagefile.txt', 'a') as file:
-                file.write(user)
-                file.write(" to: ")
                 file.write(toUser)
+                file.write(" to: ")
+                file.write(user)
                 file.write(" Message: ")
                 file.write(message)
+                file.write(" Unread")
                 file.write("\n")
+            notification(toUser, "You have messages waiting for you")
         else:
             print("User is not your friend!")
         
@@ -647,27 +661,32 @@ def sendMessages():
             message = str(input("What is the message?"))
             messageCount + 1
             with open('messagefile.txt', 'a') as file:
-                file.write("From: ")
-                file.write(user)
-                file.write(" to: ")
                 file.write(toUser)
+                file.write(" from: ")
+                file.write(user)
                 file.write(" Message: ")
                 file.write(message)
+                file.write(" Unread")
                 file.write("\n")
+            
+            with open('notifications.txt', 'a') as file:
+                file.write(toUser)
+                file.write(" You have messages waiting for you.\n")
         else: 
             print("User was not found!")
 
 
 def Messages():
     global user
-    if(messageCount > 0):
-        with open('messagefile.txt', 'r') as file:
-            for line in file: 
-                for x in line: #check if user is in messagefile 
-                    if user in x: #if user in message file print message
-                        print("You have a message:\n")
-                        print(line)
-                        print("\n")
+    with open('messagefile.txt', 'r') as file:
+        for line in file: 
+            x = line.split()
+            if x: #if x is not empty
+                if user == x[0]: #if user in message file print message
+                    print("You have a message:\n")
+                    print(line)
+                    print("\n")
+
 
     if userTier == "Standard":
         sendMessages()
