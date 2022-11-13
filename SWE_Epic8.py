@@ -36,6 +36,7 @@ def readNotifications():
         notif = line.split()
         if notif[0] == user:
             notifications += 1
+            for notif
             print(notif[1])
             #Remove notification after being printed
     if notifications == 0:
