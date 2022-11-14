@@ -438,7 +438,12 @@ def jobSearch(user, jobDeleted):
                                             grad_date = str(input("Enter grad date (mm/dd/yyyy): "))
                                             start_date = str(input("Enter date start working (mm/dd/yyyy): "))
                                             paragraph = str(input("Enter paragraph answer why you would be a good fit for this job: "))
-                                            
+                                            date_applied = input("Date applied:\n")
+                                            now=datetime.now
+                                            if now+date_applied>7:
+                                                with open('notifications.txt', 'a') as file:
+                                                    file.write(toUser)
+                                                    file.write("Remember – you're going to want to have a job when you graduate. Make sure that you start to apply for jobs today!\n")
                                             with open('jobfile_status.txt', 'a') as filenew:   #read/write to "apply or save jobfile"
                                                 data_into_list[j-1] == user
                                                 filenew.write(user)             #[j-1]
@@ -453,10 +458,9 @@ def jobSearch(user, jobDeleted):
                                                 filenew.write("\n")
                                                 filenew.write(paragraph)
                                                 filenew.write("\n")
-                                                appliedtime=datetime.now()
-                                                toolate=timedelta(days=7)
-                                                print(f"The day in 7 days is {dt_string(appliedtime + toolate)}.")
-    
+                                                filenew.write(date_applied)
+                                                filenew.write("\n")
+                                                
                                         else:
                                             pass
                         
@@ -489,6 +493,8 @@ def jobSearch(user, jobDeleted):
                                                     filenew.write("\n")
                                                     filenew.write(" ")
                                                     filenew.write("\n")
+                                                    filenew.write(" ")
+                                                    filenew.write("\n")
                                             else:
                                                 print("Saved!")
                         
@@ -502,6 +508,8 @@ def jobSearch(user, jobDeleted):
                                                 filenew.write(selAJob)             #[j]
                                                 filenew.write("\n")
                                                 filenew.write('saved')        #status stored in here [i+1]
+                                                filenew.write("\n")
+                                                filenew.write(" ")
                                                 filenew.write("\n")
                                                 filenew.write(" ")
                                                 filenew.write("\n")
