@@ -440,7 +440,7 @@ def jobSearch(user, jobDeleted):
                                             paragraph = str(input("Enter paragraph answer why you would be a good fit for this job: "))
                                             date_applied = input("Date applied:\n")
                                             now=datetime.now
-                                            if now+date_applied>7:
+                                            if now+date_applied>datetime.timedelta(days=7):
                                                 with open('notifications.txt', 'a') as file:
                                                     file.write(toUser)
                                                     file.write("Remember – you're going to want to have a job when you graduate. Make sure that you start to apply for jobs today!\n")
