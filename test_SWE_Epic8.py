@@ -530,8 +530,8 @@ def test_Messages():
 def test_readNotifications():
     user = "haysc"
     assert user == "haysc"
-    notifications = 0
-    assert notifications == 0
+    notifications = 1
+    assert notifications == 1
     for line in open("notifications.txt", "r").readlines():
         notif = line.split()
         if notif[0] == user:
@@ -542,6 +542,27 @@ def test_readNotifications():
                 if x == 0: continue
                 notifMessage += notif[x] + " "
             print(str(notifications) + ". " + notifMessage)
+            #Remove notification after being printed
+    user = "toan"
+    assert user == "toan"
+    notifications = 0
+    assert notifications == 0
+    if notifications == 0:
+        print("Dear " + user + ", You have no new notifications")
+    user = "sophos"
+    assert user == "sophos"
+    notifications = 3
+    assert notifications == 3
+    for line in open("notifications.txt", "r").readlines():
+        notif = line.split()
+        if notif[0] == user:
+            notifMessage = ""
+            assert notifMessage == ""
+            notifications += 1
+            for x in range(len(notif)):
+                if x == 0: continue
+                notifMessage += notif[x] + " "
+            print(str("Dear " + user + ~", " + notifications) + ". " + notifMessage)
             #Remove notification after being printed
     if notifications == 0:
         print("You have no new notifications")
