@@ -1,6 +1,3 @@
-haysc On Off On English
-haysc On On On English
-test2 On On On English 
-test2 On On On English 
-rockyBull On On On English 
-haysc On On On English 
+haysc Off Off On English
+haysc Off On On English
+haysc Off On On English

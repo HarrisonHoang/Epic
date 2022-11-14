@@ -1,14 +1,11 @@
 import csv
 import os
 import json
-from datetime import datetime
-from datetime import timedelta
-from os.path import exists as file_exists
+import datetime
 
 #Global Variables
 user = "" 
 userTier = ""
-toUser = ""
 Request = {}
 friends = {}
 jobDeleted = 0
@@ -61,7 +58,7 @@ def additionalOptions():
                         "Press N to see your network:\n"
                         "Press P to see pending friend requests: \n"
                         "Press M to send a message\n"
-                        "Enter Notifications to check notifications\n" 
+                        "Enter Notificaitons to check notifications\n" 
                         "Or, enter InCollege Important Links to view important InCollege links\n"))
     if addiOption == "J" or addiOption == "j":
         jobSearch(user, jobDeleted)
@@ -109,10 +106,6 @@ def additionalOptions():
 
 # Edit: additionalOption(), profile()
 def profile():
-    if file_exists('profile.csv') == False:
-        notification(toUser, "Don't forget to create a profile.")
-        print("Don't forget to create a profile.")
-        
     while user: #while user has a value, aka the user is logged in
         #check if user has a profile, if not add a notification to create a profile *Added in epic 8*
 
@@ -340,20 +333,10 @@ def jobSearch(user, jobDeleted):
         if (jobDeleted != 0): #notify if job applied for has been deleted
             with open("jobfile_status.txt", 'r') as file:
                 for j in range(len(data_into_list)):
-                    print("You have currently applied for {} jobs",len(data_into_list))
                     if data_into_list[j+1] == 'applied':
                         print("A job(s) that you applied for has been deleted")
                         jobDeleted = 0
-        with open('notifications.txt', 'a') as file:
-                file.write(toUser)
-                file.write(" A job you have applied for has been deleted.\n",data_into_list)
-        with open("jobfile_status.txt", 'r') as file:
-            count = 0
-            for line in file:
-                if line == "applied":
-                    count += 1
-        print("The number of jobs you have applied for is:",count)
-            
+
         NewJobPost =str(input("\nDo you want to post(p), delete(d) your post or search(s) job/interships: "))
         #POST A JOB
         if NewJobPost == "P" or NewJobPost == "p":
@@ -390,9 +373,6 @@ def jobSearch(user, jobDeleted):
                 filenew.write("\n")
                 filenew.write(' ')      #paragraph [j+4]
                 filenew.write("\n")
-            with open('notifications.txt', 'a') as file:
-                file.write(toUser)
-                file.write("A new job has been posted:",jobTitle)
                 
             countJob = 0
             with open(r"jobfile.txt", 'r') as file:  #read each job line save in txt
@@ -439,12 +419,7 @@ def jobSearch(user, jobDeleted):
                                             grad_date = str(input("Enter grad date (mm/dd/yyyy): "))
                                             start_date = str(input("Enter date start working (mm/dd/yyyy): "))
                                             paragraph = str(input("Enter paragraph answer why you would be a good fit for this job: "))
-                                            date_applied = input("Date applied:\n")
-                                            now=datetime.now
-                                            if now+date_applied>datetime.timedelta(days=7):
-                                                with open('notifications.txt', 'a') as file:
-                                                    file.write(toUser)
-                                                    file.write("Remember – you're going to want to have a job when you graduate. Make sure that you start to apply for jobs today!\n")
+                                            
                                             with open('jobfile_status.txt', 'a') as filenew:   #read/write to "apply or save jobfile"
                                                 data_into_list[j-1] == user
                                                 filenew.write(user)             #[j-1]
@@ -459,9 +434,7 @@ def jobSearch(user, jobDeleted):
                                                 filenew.write("\n")
                                                 filenew.write(paragraph)
                                                 filenew.write("\n")
-                                                filenew.write(date_applied)
-                                                filenew.write("\n")
-                                                
+    
                                         else:
                                             pass
                         
@@ -494,8 +467,6 @@ def jobSearch(user, jobDeleted):
                                                     filenew.write("\n")
                                                     filenew.write(" ")
                                                     filenew.write("\n")
-                                                    filenew.write(" ")
-                                                    filenew.write("\n")
                                             else:
                                                 print("Saved!")
                         
@@ -509,8 +480,6 @@ def jobSearch(user, jobDeleted):
                                                 filenew.write(selAJob)             #[j]
                                                 filenew.write("\n")
                                                 filenew.write('saved')        #status stored in here [i+1]
-                                                filenew.write("\n")
-                                                filenew.write(" ")
                                                 filenew.write("\n")
                                                 filenew.write(" ")
                                                 filenew.write("\n")

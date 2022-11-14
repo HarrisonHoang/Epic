@@ -1,4 +1,4 @@
-# pytest test_SWE_Epic7.py -v
+# pytest test_SWE_Epic8.py -v
 import SWE_Epic8
 from SWE_Epic8 import Request
      
@@ -526,3 +526,22 @@ def test_Messages():
                 break
             else:
                 print("Invalid input, please try again.")
+
+def test_readNotifications():
+    user = "haysc"
+    assert user == "haysc"
+    notifications = 0
+    assert notifications == 0
+    for line in open("notifications.txt", "r").readlines():
+        notif = line.split()
+        if notif[0] == user:
+            notifMessage = ""
+            assert notifMessage == ""
+            notifications += 1
+            for x in range(len(notif)):
+                if x == 0: continue
+                notifMessage += notif[x] + " "
+            print(str(notifications) + ". " + notifMessage)
+            #Remove notification after being printed
+    if notifications == 0:
+        print("You have no new notifications")
