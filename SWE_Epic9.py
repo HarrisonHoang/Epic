@@ -1045,7 +1045,27 @@ def MyCollege_appliedJobs():
                 file.write(data_into_list[i+4])
                 file.write("====")
 
+def MyCollege_savedJobs():
+    with open("jobfile_status.txt", 'r') as file:
+        data = file.read()
+        data_into_list = data.split("\n")
+        for i in range(len(data_into_list)):
+            with open("MyCollege_savedJobs.txt", "a") as file: 
+                file.write(data_into_list[i])            
+                file.write(" ")
+                file.write(data_into_list[i+4])
+                file.write("====")
 
+def MyCollege_profiles():
+     with open("profile.csv", 'r') as file:
+        csv_reader = csv.DictReader(file)
+        for line in csv_reader:
+                with open("MyCollege_profiles.txt", "a") as file: 
+                    file.write(data_into_list[i])            
+                    file.write(" ")
+                    file.write(data_into_list[i+6])        
+                    file.write("\n")        
+                    file.write("====")
     
 
 
