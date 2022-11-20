@@ -1006,7 +1006,31 @@ def StudentAccountApi():
                 file.write(userapi[3])
                 file.write("\n")
 def JobsAPI():
-    if file_exists('newJobs.txt') == True:
+    with open("jobfile.txt", 'r') as file:
+        with open("newJobs.txt", "r") as file:  
+            if newjobTitle!=jobTitle:
+                with open("newJobs.txt", "a") as file:
+                    file.write(newjobTitle)       
+                    file.write("\n")
+                    file.write(description)     
+                    file.write("\n")
+                    file.write("&&&")
+                    file.write(poster)
+                    file.write("\n")
+                    file.write(employer)        
+                    file.write("\n")
+                    file.write(location)        
+                    file.write("\n")
+                    file.write(salary) 
+                    file.write("\n") 
+                    file.write("====")
+                
+    countNewJob=0
+    with open("newJobs.txt", 'r') as file:
+        countJob = len(file.readlines())
+    if countJob > 60:   #6 lines per acc, so 10 accs have 60 lines
+        print ("No more job notices can be created")
+        return
         
     
 
