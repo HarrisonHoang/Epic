@@ -1005,6 +1005,10 @@ def StudentAccountApi():
                 file.write(" ")
                 file.write(userapi[3])
                 file.write("\n")
+def JobsAPI():
+    if file_exists('newJobs.txt') == True:
+        
+    
 
 def MyCollege_Jobs():
     with open("jobfile.txt", 'r') as file:
