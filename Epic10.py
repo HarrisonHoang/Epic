@@ -1009,22 +1009,23 @@ def StudentAccountApi():
 def JobsAPI():
     with open("jobfile.txt", 'r') as file:
         with open("newJobs.txt", "a") as file:  
-            if newjobTitle!=jobTitle:
-                with open("newJobs.txt", "a") as file:
-                    file.write(newjobTitle)       
-                    file.write("\n")
-                    file.write(description)     
-                    file.write("\n")
-                    file.write("&&&")
-                    file.write(poster)
-                    file.write("\n")
-                    file.write(employer)        
-                    file.write("\n")
-                    file.write(location)        
-                    file.write("\n")
-                    file.write(salary) 
-                    file.write("\n") 
-                    file.write("====")
+            for i in range(len(data_into_list)):
+                    if data_into_list[a+1] != data_into_list[i+1]:
+                        with open("newJobs.txt", "a") as file:
+                            file.write(newjobTitle)       
+                            file.write("\n")
+                            file.write(description)     
+                            file.write("\n")
+                            file.write("&&&")
+                            file.write(poster)
+                            file.write("\n")
+                            file.write(employer)        
+                            file.write("\n")
+                            file.write(location)        
+                            file.write("\n")
+                            file.write(salary) 
+                            file.write("\n") 
+                            file.write("====")
                 
     countNewJob=0
     with open("newJobs.txt", 'r') as file:
