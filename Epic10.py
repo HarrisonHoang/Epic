@@ -1002,13 +1002,13 @@ def StudentAccountApi():
                                 file.write(file2_lines[i+2])
                                 file.write("\n") 
                                 file.write("====")
-    countAcc = 0
-    with open("userfile.txt", 'r') as file:  #read each account line save in txt
-        countAcc = len(file.readlines())
+        countAcc=0
+        with open("userfile.txt", 'r') as file:  #read each account line save in txt
+            countAcc = len(file.readlines())
 
-    if countAcc > 10:
-        print ("All permitted student accounts are created")
-        return
+        if countAcc > 10:
+            print ("All permitted student accounts are created")
+            return
 def JobsAPI():
     if os.stat("newJobs.txt").st_size != 0:
         file1 = open("jobfile.txt", 'r')
