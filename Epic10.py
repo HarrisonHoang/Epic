@@ -1009,7 +1009,7 @@ def StudentAccountApi():
 def JobsAPI():
     with open("jobfile.txt", 'r') as file:
         with open("newJobs.txt", "a") as file:  
-            for i in range(len(data_into_list)):
+            for a in range(len(data_into_list)):
                     if data_into_list[a+1] != data_into_list[i+1]:
                         with open("newJobs.txt", "a") as file:
                             file.write(newjobTitle)       
