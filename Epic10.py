@@ -1010,22 +1010,21 @@ def JobsAPI():
     file1 = open("jobfile.txt", 'r')
     file2 = open("newJobs.txt", 'a') 
     file1_lines = file1.readlines()
-    file2_lines = file2.readlines()
     for i in range(len(file1_lines)):
             if file1_lines[i] != file2_lines[i]:
                         with open("newJobs.txt", "a") as file:
-                            file.write(newjobTitle)       
+                            file.write(file2_lines[i])       
                             file.write("\n")
-                            file.write(description)     
+                            file.write(file2_lines[i+1])     
                             file.write("\n")
                             file.write("&&&")
-                            file.write(poster)
+                            file.write(file2_lines[i+2])
                             file.write("\n")
-                            file.write(employer)        
+                            file.write(file2_lines[i+3])        
                             file.write("\n")
-                            file.write(location)        
+                            file.write(file2_lines[i+4])        
                             file.write("\n")
-                            file.write(salary) 
+                            file.write(file2_lines[i+5]) 
                             file.write("\n") 
                             file.write("====")
                 
