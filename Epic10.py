@@ -1120,7 +1120,6 @@ def main():
             continue
 
 if __name__ == "__main__":
-    main()
     JobsAPI()
     StudentAccountApi()
     MyCollege_Jobs()
@@ -1128,6 +1127,8 @@ if __name__ == "__main__":
     MyCollege_savedJobs()
     MyCollege_profiles()
     MyCollege_users()
+    main()
+    
 
 #call prelogin screen
 #loginOptions()
