@@ -1,7 +1,7 @@
 import csv
 import os
 import json
-from datetime import datetime
+from datetime import datetime as dt
 from datetime import timedelta
 from os.path import exists as file_exists
 
@@ -314,8 +314,9 @@ def network(user):
 
 def printJobDetail(user):
     with open('jobfile.txt', 'r') as file:
-        data = file.read()
-        data_into_list = data.split("\n")    #put value in txt into a list
+        data = file.readlines()
+        data_list_split = [item.split('+') for item in data]
+        data_into_list = [item for l in data_list_split for item in l]    #put value in txt into a list
         print(data_into_list)
         print("\nAll jobs currently in system:")
         for g in range(1,len(data_into_list),6):    #search name of user in that list
@@ -324,8 +325,9 @@ def printJobDetail(user):
 
     with open('jobfile_status.txt', 'r') as newfile:
         print("\nJob(s) that you applied/saved in system:")
-        data = newfile.read()
-        data_into_list = data.split("\n")
+        data = newfile.readlines()
+        data_list_split = [item.split('+') for item in data]
+        data_into_list = [item for l in data_list_split for item in l]
         for a in range(len(data_into_list)):    #search name of user in that list
             if data_into_list[a] == user:
                 print("User: " + data_into_list[a])
@@ -344,9 +346,10 @@ def jobSearch(user, jobDeleted):
                     if data_into_list[j+1] == 'applied':
                         print("A job(s) that you applied for has been deleted")
                         jobDeleted = 0
-        with open('notifications.txt', 'a') as file:
-                file.write(toUser)
-                file.write(" A job you have applied for has been deleted.\n",data_into_list)
+                        with open('notifications.txt', 'a') as file:
+                                file.write(toUser)
+                                file.write(" A job you have applied for has been deleted.\n")
+                                file.write(data_into_list)
         with open("jobfile_status.txt", 'r') as file:
             count = 0
             for line in file:
@@ -365,40 +368,41 @@ def jobSearch(user, jobDeleted):
             #save data into jobfile.txt
             with open("jobfile.txt", "a") as file:
                 file.write(user)            #[i-1]
-                file.write("\n")
+                file.write("+")
                 file.write(jobTitle)        #[i] search by jobTitle
-                file.write("\n")
+                file.write("+")
                 file.write(description)     #[i+1]
-                file.write("\n")
+                file.write("+")
                 file.write(employer)        #[i+2]
-                file.write("\n")
+                file.write("+")
                 file.write(location)        #[i+3]
-                file.write("\n")
+                file.write("+")
                 file.write(salary)          #[i+4]
                 file.write("\n")
             #Save status of data into jobfile_status.txt at the same time
             with open('jobfile_status.txt', 'a') as filenew:  
-                filenew.write(' ')      #use to save user who want to apply or save
-                filenew.write("\n")
+                filenew.write(" ")      #use to save user who want to apply or save
+                filenew.write("+")
                 filenew.write(jobTitle)      #title [j]
-                filenew.write("\n")
-                filenew.write(' ')      #STATUS [j+1]
-                filenew.write("\n")
-                filenew.write(' ')      #grad_date [j+2]
-                filenew.write("\n")
-                filenew.write(' ')      #start_date [j+3]
-                filenew.write("\n")
-                filenew.write(' ')      #paragraph [j+4]
+                filenew.write("+")
+                filenew.write(" ")      #STATUS [j+1]
+                filenew.write("+")
+                filenew.write(" ")      #grad_date [j+2]
+                filenew.write("+")
+                filenew.write(" ")      #start_date [j+3]
+                filenew.write("+")
+                filenew.write(" ")      #paragraph [j+4]
                 filenew.write("\n")
             with open('notifications.txt', 'a') as file:
                 file.write(toUser)
-                file.write("A new job has been posted:",jobTitle)
+                file.write(" A new job has been posted:")
+                file.write(jobTitle)
                 
             countJob = 0
             with open(r"jobfile.txt", 'r') as file:  #read each job line save in txt
                 countJob = len(file.readlines())
                 #print(countJob)
-            if countJob > 60:   #6 lines per acc, so 10 accs have 60 lines
+            if countJob > 10:   #6 lines per acc, so 10 accs have 60 lines
                 print ("All permitted jobs are created, please come back later")
             break
 
@@ -407,118 +411,130 @@ def jobSearch(user, jobDeleted):
             printJobDetail(user)
 
             with open('jobfile.txt', 'r') as file:
-                data = file.read()
-                data_into_list = data.split("\n")    #put value in txt into a list
+                data = file.readlines()
+                jdata_into_list = [item.split('+') for item in data]
+                print(jdata_into_list)
+                #data_into_list = [item for l in data_list_split for item in l]
+                #data_into_list = data.split("+")    #put value in txt into a list
                 
                 selAJob = str(input("Select the job you want by enter its title ('intership' for example): "))
-                for i in range(len(data_into_list)):    #search name of user in that list
-                    if data_into_list[i] == selAJob:
-                        print("Title: " + data_into_list[i])
-                        print("Description: " + data_into_list[i+1])
-                        print("Employer: " + data_into_list[i+2])
-                        print("Location: " + data_into_list[i+3])
-                        print("Salary: " + data_into_list[i+4])
+                for i in range(len(jdata_into_list)):    #search name of user in that list
+                    #print(jdata_into_list[i][1])
+                    if jdata_into_list[i][1] == selAJob:
+                        print("Title: " + jdata_into_list[i][0])
+                        print("Description: " + jdata_into_list[i][1])
+                        print("Employer: " + jdata_into_list[i][2])
+                        print("Location: " + jdata_into_list[i][3])
+                        print("Salary: " + jdata_into_list[i][4])
 
                         aOrS = str(input("Do you want to apply now (a) or (s) save/unsave for later? "))
                         if aOrS == 'a':
-                            if data_into_list[i-1] == user: #the user is the one posted
+                            if jdata_into_list[i][0] == user: #the user is the one posted
                                 print('Cannot apply for a job that you posted')
                             else:
                                 with open("jobfile_status.txt", 'r+') as newfile:
-                                    data = newfile.read()
+                                    data = newfile.readlines()
                                     #put value in txt into a list
-                                    data_into_list = data.split("\n") 
+                                    data_into_list = [item.split('+') for item in data]
                                     #print(data_into_list)
                                     for j in range(len(data_into_list)):    
                                         #search "title of job" in that list
-                                        if (data_into_list[j-1] == user) and (data_into_list[j] == selAJob) and data_into_list[j+1] == 'applied':
+                                        if (data_into_list[j][0] == user) and (data_into_list[j][1] == selAJob) and data_into_list[j][2] == 'applied':
                                             print('You applied this job already')
                                             
                                         #if title is in the list (same as selAJob) and "status" is blank or 'saved'
-                                        elif (data_into_list[j] == selAJob) and (data_into_list[j+1] == ' ' or data_into_list[j+1] == 'saved'):
+                                        elif (data_into_list[j][1] == selAJob) and (data_into_list[j][2] == ' ' or data_into_list[j][2] == 'saved'):
                                             grad_date = str(input("Enter grad date (mm/dd/yyyy): "))
                                             start_date = str(input("Enter date start working (mm/dd/yyyy): "))
                                             paragraph = str(input("Enter paragraph answer why you would be a good fit for this job: "))
-                                            date_applied = input("Date applied:\n")
-                                            now=datetime.now
-                                            if now+date_applied>datetime.timedelta(days=7):
+                                            date_applied = dt.now()
+                                            check_days = date_applied - timedelta(days=7)
+                                            if check_days.day > 7:
                                                 with open('notifications.txt', 'a') as file:
                                                     file.write(toUser)
                                                     file.write("Remember – you're going to want to have a job when you graduate. Make sure that you start to apply for jobs today!\n")
                                             with open('jobfile_status.txt', 'a') as filenew:   #read/write to "apply or save jobfile"
                                                 data_into_list[j-1] == user
                                                 filenew.write(user)             #[j-1]
-                                                filenew.write("\n")
+                                                filenew.write("+")
                                                 filenew.write(selAJob)             #[j]
-                                                filenew.write("\n")
+                                                filenew.write("+")
                                                 filenew.write('applied')        #status stored in here [i+1]
-                                                filenew.write("\n")
+                                                filenew.write("+")
                                                 filenew.write(grad_date)
-                                                filenew.write("\n")
+                                                filenew.write("+")
                                                 filenew.write(start_date)
-                                                filenew.write("\n")
+                                                filenew.write("+")
                                                 filenew.write(paragraph)
+                                                filenew.write("+")
+                                                filenew.write(date_applied.strftime("%x"))
                                                 filenew.write("\n")
-                                                filenew.write(date_applied)
-                                                filenew.write("\n")
+                                            print("Applied!")
+                                            break
                                                 
                                         else:
                                             pass
                         
                         elif aOrS == 's':
-                            if data_into_list[i-1] == user: #the user is the one posted
+                            if jdata_into_list[i][0] == user: #the user is the one posted
                                 print('Cannot save for a job that you posted')
                             else:
                                 with open("jobfile_status.txt", 'r+') as newfile:
-                                    data = newfile.read()
+                                    data = newfile.readlines()
+                                    print(data)
                                     #put value in txt into a list
-                                    data_into_list = data.split("\n") 
-                                    #print(data_into_list)
+                                    data_into_list = [item.split('+') for item in data]
+                                    # data_into_list = [item for l in data_list_split for item in l] 
+                                    print(data_into_list)
                                     for j in range(len(data_into_list)):    
                                         #search "title of job" in that list
-                                        if (data_into_list[j-1] == user) and (data_into_list[j] == selAJob) and data_into_list[j+1] == 'saved':
+                                        if (data_into_list[j][0] == user) and (data_into_list[j][1] == selAJob) and data_into_list[j][2] == 'saved':
                                             sORu = str(input("You saved this post already. Do you want to unsave (u) or keep it (any key): "))
                                             if sORu == 'u': 
                                                 print("change status to unsaved")
                                                 with open('jobfile_status.txt', 'a') as filenew:   #read/write to "apply or save jobfile"
                                                     data_into_list[j-1] == user
                                                     filenew.write(user)             #[j-1]
-                                                    filenew.write("\n")
+                                                    filenew.write("+")
                                                     filenew.write(selAJob)             #[j]
-                                                    filenew.write("\n")
+                                                    filenew.write("+")
                                                     filenew.write(' ')        #status stored in here [i+1]
-                                                    filenew.write("\n")
+                                                    filenew.write("+")
                                                     filenew.write(" ")
-                                                    filenew.write("\n")
+                                                    filenew.write("+")
                                                     filenew.write(" ")
-                                                    filenew.write("\n")
+                                                    filenew.write("+")
                                                     filenew.write(" ")
-                                                    filenew.write("\n")
+                                                    filenew.write("+")
                                                     filenew.write(" ")
                                                     filenew.write("\n")
                                             else:
                                                 print("Saved!")
                         
                                         #if title is in the list (same as selAJob) and "status" is blank or 'saved'
-                                        elif (data_into_list[j] == selAJob) and (data_into_list[j+1] == ' '):
+                                        # if(data_into_list[i][1]):
+                                        #     print(data_into_list[i][1])
+                                        # elif(data_into_list[j][2] == ' '):
+                                        #     print(data_into_list[j][2])
+                                        elif (data_into_list[j][1] == selAJob) and (data_into_list[j][2] == ' '):
                                             print("change status to saved")
                                             with open('jobfile_status.txt', 'a') as filenew:   #read/write to "apply or save jobfile"
-                                                data_into_list[j-1] == user
+                                                #data_into_list[j-1] == user
                                                 filenew.write(user)             #[j-1]
-                                                filenew.write("\n")
+                                                filenew.write("+")
                                                 filenew.write(selAJob)             #[j]
-                                                filenew.write("\n")
+                                                filenew.write("+")
                                                 filenew.write('saved')        #status stored in here [i+1]
-                                                filenew.write("\n")
+                                                filenew.write("+")
+                                                filenew.write(" ")
+                                                filenew.write("+")
+                                                filenew.write(" ")
+                                                filenew.write("+")
+                                                filenew.write(" ")
+                                                filenew.write("+")
                                                 filenew.write(" ")
                                                 filenew.write("\n")
-                                                filenew.write(" ")
-                                                filenew.write("\n")
-                                                filenew.write(" ")
-                                                filenew.write("\n")
-                                                filenew.write(" ")
-                                                filenew.write("\n")
-                                        elif (data_into_list[j-1] == user) and (data_into_list[j] == selAJob) and data_into_list[j+1] == 'applied': #new job to save
+                                        elif (data_into_list[j][0] == user) and (data_into_list[j][1] == selAJob) and data_into_list[j][2] == 'applied': #new job to save
                                             print("Cannot save a job you posted or applied")
                                         else:
                                             pass
@@ -536,8 +552,9 @@ def jobSearch(user, jobDeleted):
                 print("All jobs currently in system:")
                 #jobList = file.readlines()
                 #print(jobList)
-                data = file.read()
-                data_into_list = data.split("\n")    #put value in txt into a list
+                data = file.readlines()
+                data_list_split = [item.split('+') for item in data]
+                data_into_list = [item for l in data_list_split for item in l]    #put value in txt into a list
                 print(data_into_list)
                 selAJob = str(input("Select the job you want to delete by entering its title: ")) #search in job list
                 for i in range(len(data_into_list)):    #search name of user in that list
@@ -1043,19 +1060,23 @@ def JobsAPI():
 
 def MyCollege_Jobs():
     with open("jobfile.txt", 'r') as file:
-        data = file.read()
-        data_into_list = data.split("\n")
-        for i in range(len(data_into_list)):
+        data_lines = file.readlines()
+        data_into_list = [item.split('+') for item in data_lines]
+        #data_into_list = data.split("\n")
+        for i in range(len(data_lines)):
+            #print(data_into_list)
             with open("MyCollege_jobs.txt", "a") as file: 
-                file.write(data_into_list[i])            
+                file.write(data_lines[i][0])            
                 file.write(" ")
-                file.write(data_into_list[i+1])        
+                file.write(data_lines[i][1])        
                 file.write(" ")
-                file.write(data_into_list[i+2])     
+                file.write(data_into_list[i][2])     
                 file.write(" ")
-                file.write(data_into_list[i+3])        
+                file.write(data_into_list[i][3])        
                 file.write(" ")
-                file.write(data_into_list[i+4])        
+                file.write(data_into_list[i][4])  
+                file.write(" ")
+                file.write(data_into_list[i][5])       
                 file.write("\n")        
                 file.write("====")
 
@@ -1071,36 +1092,55 @@ def MyCollege_users():
 
 def MyCollege_appliedJobs():
     with open("jobfile_status.txt", 'r') as file:
-        data = file.read()
-        data_into_list = data.split("\n")
+        data_lines = file.readlines()
+        data_into_list = [item.split('+') for item in data_lines]
         for i in range(len(data_into_list)):
-            with open("MyCollege_appliedjobs.txt", "a") as file: 
-                file.write(data_into_list[i])            
-                file.write(" ")
-                file.write(data_into_list[i+4])
-                file.write("====")
+            with open("MyCollege_appliedjobs.txt", "a") as file:
+                #if user has applied 
+                if (data_into_list[i][0] == user) and data_into_list[i][2] == 'applied':
+                    file.write(data_into_list[i][1])     #job title       
+                    file.write(" ")
+                    file.write(data_into_list[i][0])    #user that applied
+                    file.write(" ")
+                    file.write(data_into_list[i][6])
+                    file.write("====\n")
 
 def MyCollege_savedJobs():
     with open("jobfile_status.txt", 'r') as file:
-        data = file.read()
-        data_into_list = data.split("\n")
+        data_lines = file.readlines()
+        data_into_list = [item.split('+') for item in data_lines]
         for i in range(len(data_into_list)):
             with open("MyCollege_savedJobs.txt", "a") as file: 
-                file.write(data_into_list[i])            
-                file.write(" ")
-                file.write(data_into_list[i+4])
-                file.write("====")
+                #if user has saved
+                if (data_into_list[i][0] == user) and data_into_list[i][2] == 'applied':
+                    file.write(data_into_list[i][0])      #user      
+                    file.write(" ")
+                    file.write(data_into_list[i][1])    #title
+                    file.write("====\n")
             
 def MyCollege_profiles():
      with open("profile.csv", 'r') as file:
         csv_reader = csv.DictReader(file)
+        #print(csv_reader)
         for line in csv_reader:
-                with open("MyCollege_profiles.txt", "a") as file: 
-                    file.write(data_into_list[i])            
-                    file.write(" ")
-                    file.write(data_into_list[i+6])        
-                    file.write("\n")        
-                    file.write("====")
+            print(line)
+            with open("MyCollege_profiles.txt", "a") as file: 
+                #title, major, university name, about, experience, and education
+                file.write(line.get('name'))  
+                file.write(" ")
+                file.write(line.get('title'))          
+                file.write(" ")
+                file.write(line.get('major')) 
+                file.write(" ")
+                file.write(line.get('univer'))    
+                file.write(" ")
+                file.write(line.get('about'))  
+                file.write(" ")
+                file.write(line.get('experi1')) 
+                file.write(" ")
+                file.write(line.get('edu'))
+                file.write("\n")        
+                file.write("====\n")
     
 
 
