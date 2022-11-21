@@ -1007,26 +1007,29 @@ def StudentAccountApi():
                 print ("All permitted student accounts are created")
                 return
 def JobsAPI():
-    file1 = open("jobfile.txt", 'r')
-    file2 = open("newJobs.txt", 'a') 
-    file1_lines = file1.readlines()
-    for i in range(len(file1_lines)):
-            if file1_lines[i] != file2_lines[i]:
-                        with open("newJobs.txt", "a") as file:
-                            file.write(file2_lines[i])       
-                            file.write("\n")
-                            file.write(file2_lines[i+1])     
-                            file.write("\n")
-                            file.write("&&&")
-                            file.write(file2_lines[i+2])
-                            file.write("\n")
-                            file.write(file2_lines[i+3])        
-                            file.write("\n")
-                            file.write(file2_lines[i+4])        
-                            file.write("\n")
-                            file.write(file2_lines[i+5]) 
-                            file.write("\n") 
-                            file.write("====")
+    if os.stat("newJobs.txt").st_size != 0:
+        file1 = open("jobfile.txt", 'r')
+        file2 = open("newJobs.txt", 'r') 
+        file1_lines = file1.readlines()
+        file2_lines = file2.readlines()
+    
+        for i in range(len(file1_lines)):
+                if file1_lines[i] != file2_lines[i]:
+                            with open("newJobs.txt", "a") as file:
+                                file.write(file2_lines[i])       
+                                file.write("\n")
+                                file.write(file2_lines[i+1])     
+                                file.write("\n")
+                                file.write("&&&")
+                                file.write(file2_lines[i+2])
+                                file.write("\n")
+                                file.write(file2_lines[i+3])        
+                                file.write("\n")
+                                file.write(file2_lines[i+4])        
+                                file.write("\n")
+                                file.write(file2_lines[i+5]) 
+                                file.write("\n") 
+                                file.write("====")
                 
     countNewJob=0
     with open("newJobs.txt", 'r') as file:
