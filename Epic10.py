@@ -986,18 +986,22 @@ def GuestControls():
     print("You are not signed in")
 
 def StudentAccountApi():
-    with open("userfile.txt", 'r') as file:
-        with open("studentAccounts.txt", "a") as file:  
-            if newerUser!=newUser:
-                with open("studentAccounts.txt", "a") as file:
-                    file.write(newerUser)
-                    file.write(" ")
-                    file.write(firstAndLastName)
-                    file.write(" ")
-                    file.write(newPass)
-                    file.write(" ")
-                    file.write("\n")
-                    file.write("====")
+   if os.stat("studentAccounts.txt").st_size != 0:
+        file1 = open("userfile.txt", 'r')
+        file2 = open("studentAccounts.txt", 'r') 
+        file1_lines = file1.readlines()
+        file2_lines = file2.readlines()
+    
+        for i in range(len(file1_lines)):
+                if file1_lines[i] != file2_lines[i]:
+                            with open("studentAccounts.txt", "a") as file:
+                                file.write(file2_lines[i])       
+                                file.write("\n")
+                                file.write(file2_lines[i+1])     
+                                file.write("\n")
+                                file.write(file2_lines[i+2])
+                                file.write("\n") 
+                                file.write("====")
 
             countAcc = 0
             with open("userfile.txt", 'r') as file:  #read each account line save in txt
