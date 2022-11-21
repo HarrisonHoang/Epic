@@ -989,7 +989,7 @@ def StudentAccountApi():
     with open("userfile.txt", 'r') as file:
         with open("studentAccounts.txt", "a") as file:  
             if newerUser!=newUser:
-                with open("newJobs.txt", "a") as file:
+                with open("studentAccounts.txt", "a") as file:
                     file.write(newerUser)
                     file.write(" ")
                     file.write(firstAndLastName)
