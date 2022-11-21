@@ -1121,6 +1121,13 @@ def main():
 
 if __name__ == "__main__":
     main()
+    JobsAPI()
+    StudentAccountApi()
+    MyCollege_Jobs()
+    MyCollege_appliedJobs()
+    MyCollege_savedJobs()
+    MyCollege_profiles()
+    MyCollege_users()
 
 #call prelogin screen
 #loginOptions()
