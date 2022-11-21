@@ -1,5 +1,5 @@
 To test run:
-pytest test_SWE_Epic5.py -v
+pytest test_SWE_Epic10.py -v
 
 ===============================================================================
 Epic 5:       pytest test_SWE_Epic5.py -v

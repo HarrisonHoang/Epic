@@ -1,7 +1,8 @@
 # pytest test_SWE_Epic10.py -v
 import SWE_Epic10
-from SWE_Epic10 import Request
-     
+from Epic10 import Request, JobsAPI, StudentAccountApi, MyCollege_Jobs, MyCollege_appliedJobs, MyCollege_savedJobs, MyCollege_profiles, MyCollege_users
+
+
 #Test account login- make sure user states whether they have an InCollege account
 def test_LogIn():
     LogOption="y"
@@ -566,3 +567,25 @@ def test_readNotifications():
             #Remove notification after being printed
     if notifications == 0:
         print("You have no new notifications")
+
+
+def test_StudentAccountApi():
+    StudentAccountApi()
+
+def test_JobsAPI():
+    JobsAPI()
+
+def test_MyCollege_Jobs():
+    MyCollege_Jobs()
+
+def test_MyCollege_users():
+    MyCollege_users()
+
+def test_MyCollege_appliedJobs():
+    MyCollege_appliedJobs()
+
+def test_MyCollege_savedJobs():
+    MyCollege_savedJobs()
+
+def test_MyCollege_profiles():
+    MyCollege_profiles()
