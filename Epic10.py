@@ -987,7 +987,7 @@ def GuestControls():
 
 def StudentAccountApi():
     with open("userfile.txt", 'r') as file:
-        with open("studentAccounts.txt", "r") as file:  
+        with open("studentAccounts.txt", "a") as file:  
             if newerUser!=newUser:
                 with open("newJobs.txt", "a") as file:
                     file.write(newerUser)
@@ -1008,7 +1008,7 @@ def StudentAccountApi():
                 return
 def JobsAPI():
     with open("jobfile.txt", 'r') as file:
-        with open("newJobs.txt", "r") as file:  
+        with open("newJobs.txt", "a") as file:  
             if newjobTitle!=jobTitle:
                 with open("newJobs.txt", "a") as file:
                     file.write(newjobTitle)       
