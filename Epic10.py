@@ -1007,10 +1007,12 @@ def StudentAccountApi():
                 print ("All permitted student accounts are created")
                 return
 def JobsAPI():
-    with open("jobfile.txt", 'r') as file:
-        with open("newJobs.txt", "a") as file:  
-            for a in range(len(data_into_list)):
-                    if data_into_list[a+1] != data_into_list[i+1]:
+    file1 = open("jobfile.txt", 'r')
+    file2 = open("newJobs.txt", 'a') 
+    file1_lines = file1.readlines()
+    file2_lines = file2.readlines()
+    for i in range(len(file1_lines)):
+            if file1_lines[i] != file2_lines[i]:
                         with open("newJobs.txt", "a") as file:
                             file.write(newjobTitle)       
                             file.write("\n")
